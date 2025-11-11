@@ -1,0 +1,180 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    position: relative;
+}
+
+/*Barra de Navegação*/
+.navBar {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 50px;
+    background-color: rgba(56, 56, 56, 0.4);
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navBar a{
+    text-decoration: none;
+    color: white;
+    margin-right: 7px;
+    margin-left: 7px;
+}
+
+.navBar button{
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    transition: 1s;
+    font-size: 1.3rem;
+    border: 2px solid;
+    color:rgb(167, 156, 115);
+    margin-right: 10px;
+}
+
+.navBar h2{
+    color: white;
+    margin-left: 30px;
+}
+
+
+/*Seção Pai - MAIN*/
+
+main {
+    display: flex;
+    position: relative;
+}
+
+/*Conteudo Main*/
+
+.conteudoMain {
+    position: absolute;
+    width: 100%;
+    top: 20%;
+    color: white;
+    font-size: 1.5rem;
+    background-color: rgba(56, 56, 56, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteudoMain h2, .conteudoMain p{
+    width: 50%;
+}
+
+.conteudoMain h2{
+    font-family: sans-serif;
+    color: #ebf566;
+    font-size: 1.1rem;
+}
+
+.conteudoMain p{
+    margin-top: 0;
+    font-size: 2.5rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+}
+
+
+/* Seção Filho - Jornada*/
+
+#bntJornada{
+    position: absolute;
+    left: 18%;
+    top: 670px;
+    z-index: 10;
+    color: rgb(252, 237, 178);
+    background-color: transparent;
+    border: none;
+    transition: 1s;
+    font-size: 2rem;
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+}
+
+#bntJornada:hover{
+    color: yellow;
+    cursor: pointer;
+}
+
+.mainDiv,.divDois{
+    width: 100%;
+}
+
+.mainDiv div {
+    position: absolute;
+    width: 25%;
+    left: 12%;
+    top: 20%;
+    z-index: 2;
+    color: rgb(255, 255, 255);
+    opacity: 0;
+}
+
+.mainDiv h2 {
+    position: absolute;
+    top: -20%;
+    width: 50vh;
+    z-index: 3;
+    color: rgb(255, 255, 255);
+}
+
+.mainDiv img {
+    width: 100%;
+    transition: 0.5s;
+    position: relative;
+    filter: brightness(60%);
+}
+
+/* Seção Filho - Bíblia*/
+
+#bntBiblia{
+    position: absolute;
+    right: 20%;
+    top: 670px;
+    z-index: 10;
+    color: rgb(252, 237, 178);
+    background-color: transparent;
+    border: none;
+    transition: 1s;
+    font-size: 2rem;
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+}
+
+#bntBiblia:hover{
+    color: rgb(100, 36, 11);
+    cursor: pointer;
+}
+.divDois h2 {
+    position: absolute;
+    width: 50vh;
+    top: -20%;
+    z-index: 3;
+    color: rgb(255, 255, 255);
+}
+
+.divDois div {
+    position: absolute;
+    width: 25%;
+    right: 12%;
+    top: 20%;
+    z-index: 2;
+    color: rgb(255, 255, 255);
+    opacity: 0;
+}
+
+.divDois img {
+    width: 100%;
+    transition: 0.5s;
+    position: relative;
+    filter: brightness(60%);
+}

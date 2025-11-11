@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Journey</title>
+</head>
+
+<body style="background-color: #2a3338;">
+    <header class="navBar" id="navBar">
+        <h2>Journey</h2>
+
+
+        <div>
+            <a href="#">Inicio</a>
+            <a href="#">Curiosidades</a>
+            <a href="#">Assuntos</a>
+        </div>
+
+
+        <div>
+            <button>Login</button>
+            <button>Cadastro</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="mainDiv" id="imagemMainUm">
+            <img src="img/trilha.jpg">
+            
+            <div id="containerMensagemUm">
+
+                <h2 style="color: #ebf566;">─── JORNADA</h2>
+
+                <p>
+                    Jornada é mais do que um caminho, é a transformação que acontece enquanto avançamos.
+                    Cada passo revela algo novo: uma habilidade que nasce, uma força que cresce, uma possibilidade que
+                    antes parecia distante. A jornada não exige perfeição, apenas coragem para continuar.
+
+                </p>
+
+                <p>
+                    Quando escolhemos caminhar, abrimos portas. Descobrimos que somos capazes de ir além do que
+                    imaginávamos, que o processo vale tanto quanto o destino e que cada desafio traz uma oportunidade de
+                    evolução.
+                </p>
+
+                <p>
+                    Começar a sua jornada é dizer “sim” a você mesmo.
+                    É permitir-se aprender, errar, melhorar e conquistar. É confiar que existe algo maior esperando por
+                    você do outro lado do esforço.
+                </p>
+
+                <p>
+                    E o melhor de tudo: você não precisa ter todas as respostas agora. Basta dar o primeiro passo.
+                </p>
+
+                <p>
+                    A sua jornada começa hoje. Vamos juntos?
+                </p>
+
+            </div>
+
+
+            <button id="bntJornada" onclick="botaoJornada()">->JORNADA<-</button>
+        </div>
+
+        <div class="divDois" id="imagemMainDois"><img src="img/homem-biblia.jpg">
+
+            
+
+            <div id="containerMensagemDois">
+
+                <h2 style="color: #ebf566;">─── BIBLIA</h2>
+
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio soluta, aspernatur eligendi eveniet consectetur nam, vitae accusamus nobis nisi repellat porro reiciendis doloribus hic iure ad debitis veritatis nesciunt ut?
+
+                </p>
+
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste modi eaque pariatur, qui eveniet sequi suscipit possimus? Cupiditate numquam culpa veritatis modi sunt eum at excepturi, explicabo quia, ipsam quaerat!
+                </p>
+
+                <p>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam accusamus minima, quae facere, temporibus deserunt consectetur a minus vitae impedit quaerat odio eligendi culpa quam aspernatur! Ad iste distinctio consectetur?
+                </p>
+
+                <p>
+                    temporibus deserunt consectetur a minus vitae impedit quaerat odio eligendi culpa quam aspernatur! Ad iste distinctio consectetur?
+                </p>
+
+                <p>
+                     Ad iste distinctio consectetur?
+                </p>
+
+            </div>
+
+            <button id="bntBiblia" onclick="botaoLeitura()">->BIBLIA<-</button>
+        </div>
+
+
+        <div class="conteudoMain" id="conteudoMain">
+            <h2> ── UMA JORNADA ──  UMA ESCOLHA</h2>
+            <p>"Busquem, pois, em primeiro lugar o Reino de Deus e a sua justiça, e todas essas coisas lhes serão acrescentadas." (Mateus 6:33)</p>
+        </div>
+
+
+    </main>
+
+    <div style="height: 900px; ">
+
+    </div>
+</body>
+
+<script>
+
+    let bntUmTrue = true;
+    let bntDoisTrue = true;
+
+    function botaoJornada() {
+       if(bntUmTrue){
+        conteudoMain.style.opacity = "0"
+        containerMensagemUm.style.opacity = "1"
+        bntUmTrue = false
+       }else{
+        conteudoMain.style.opacity = "1"
+        containerMensagemUm.style.opacity = "0"
+        bntUmTrue = true
+       }
+    }
+
+    function botaoLeitura() {
+        if(bntDoisTrue){
+        conteudoMain.style.opacity = "0"
+        containerMensagemDois.style.opacity = "1"
+        bntDoisTrue = false
+       }else{
+        conteudoMain.style.opacity = "1"
+        containerMensagemDois.style.opacity = "0"
+        bntDoisTrue = true
+       }
+    }
+</script>
+
+</html>
