@@ -26,7 +26,6 @@ main{
     align-items: center;
     width:100%;
     background-color: red;
-    display: none;
 }
 
 .dados-login{
@@ -56,7 +55,6 @@ main{
     align-items: center;
     width: 100%;
     background-color: blue;
-    
 }
 
 .dados-cadastro{
