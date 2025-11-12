@@ -19,7 +19,7 @@
                     <input type="text" id="email"><br>
                     <label for="senha">Sua senha:</label><br>
                     <input type="text" id="senha"><br>
-                    <button >Login</button>
+                    <button onclick="login()">Login</button>
                 </div>
 
 
@@ -31,7 +31,7 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat non reprehenderit tempora ullam
                         nihil hic, architecto voluptates blanditiis, eos cumque eligendi atque. Cumque harum,
                         exercitationem ipsam ab quaerat vitae odit?</p>
-                    
+
                     <button onclick="toCadastro()">cadastro</button>
                 </div>
             </div>
@@ -49,14 +49,14 @@
                     <button onclick="toLogin()">Login</button>
                 </div>
 
-                 <div class="dados-cadastro">
+                <div class="dados-cadastro">
                     <label for="email">Seu nome:</label><br>
                     <input type="text" id="email"><br>
                     <label for="email">Seu e-mail:</label><br>
                     <input type="text" id="email"><br>
                     <label for="senha">Sua senha:</label><br>
                     <input type="text" id="senha"><br>
-                    <button>Cadastro</button>
+                    <button onclick="cadastrar()">Cadastro</button>
 
                 </div>
             </div>
@@ -66,17 +66,40 @@
 <script>
 
     cadastro.style.display = 'none'
-    
-    function toCadastro(){
-        login.style.display = 'none'
-        cadastro.style.display = 'block'
-        cadastro.style.display = ''
+
+    function toCadastro() {
+
+        login.style.opacity = '0'
+
+        setTimeout(() => {
+
+            login.style.display = 'none'
+            cadastro.style.display = 'block'
+            cadastro.style.display = ''
+
+            cadastro.style.opacity = '1'
+            login.style.pointerEvents = 'none'
+            cadastro.style.pointerEvents = 'auto'
+
+        }, 1000)
+
     }
 
-    function toLogin(){
-        cadastro.style.display = 'none'
-        login.style.display = 'block'
-        login.style.display = ''
+    function toLogin() {
+
+        cadastro.style.opacity = '0'
+
+        setTimeout(() => {
+            cadastro.style.display = 'none'
+            login.style.display = 'block'
+            login.style.display = ''
+
+            login.style.opacity = '1'
+            cadastro.style.pointerEvents = 'none'
+            login.style.pointerEvents = 'auto'
+        }, 700)
+
     }
 </script>
+
 </html>

@@ -26,6 +26,9 @@ main{
     align-items: center;
     width:100%;
     background-color: red;
+    opacity: 1;
+    transition: 1s;
+    border-radius: 70px;
 }
 
 .dados-login{
@@ -46,6 +49,7 @@ main{
     width: 40%;
     height: 100%;
     background-color: blue;
+    border-radius: 14px;
 }
 
 .cadastro{
@@ -55,6 +59,9 @@ main{
     align-items: center;
     width: 100%;
     background-color: blue;
+    opacity: 0;
+    transition: 1s;
+    border-radius: 70px;
 }
 
 .dados-cadastro{
@@ -75,4 +82,5 @@ main{
     width: 40%;
     height: 100%;
     background-color: red;
+    border-radius: 14px;
 }
