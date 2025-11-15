@@ -8,28 +8,27 @@
     <title>Journey</title>
 </head>
 
-<body style="background-color: #2a3338;">
+<body style="background-color: rgb(26, 30, 33);">
     <header class="navBar" id="navBar">
         <h2>Journey</h2>
 
-
         <div>
-            <a href="#">Inicio</a>
-            <a href="#">Curiosidades</a>
-            <a href="#">Assuntos</a>
+            <a class="navA" href="#">Inicio</a>
+            <a class="navA" href="#">Temas</a>
+            <a class="navA" href="#">Curiosidade</a>
+            <a class="navA" href="#">Sobre mim</a>
         </div>
 
 
         <div>
-            <button>Login</button>
-            <button>Cadastro</button>
+            <a id="conta" href="./loginCadastro.html">Conta</a>
         </div>
     </header>
 
     <main>
         <div class="mainDiv" id="imagemMainUm">
-            <img src="img/trilha.jpg">
-            
+            <img src="img\trilha.png">
+
             <div id="containerMensagemUm">
 
                 <h2 style="color: #ebf566;">─── JORNADA</h2>
@@ -64,55 +63,109 @@
             </div>
 
 
-            <button id="bntJornada" onclick="botaoJornada()">->JORNADA<-</button>
+            <button id="bntJornada" onclick="botaoJornada()">JORNADA</button>
         </div>
 
-        <div class="divDois" id="imagemMainDois"><img src="img/homem-biblia.jpg">
+        <div class="divDois" id="imagemMainDois">
+            <img src="img\biblia.png">
 
-            
 
             <div id="containerMensagemDois">
 
                 <h2 style="color: #ebf566;">─── BIBLIA</h2>
 
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio soluta, aspernatur eligendi eveniet consectetur nam, vitae accusamus nobis nisi repellat porro reiciendis doloribus hic iure ad debitis veritatis nesciunt ut?
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio soluta, aspernatur eligendi eveniet
+                    consectetur nam, vitae accusamus nobis nisi repellat porro reiciendis doloribus hic iure ad debitis
+                    veritatis nesciunt ut?
 
                 </p>
 
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste modi eaque pariatur, qui eveniet sequi suscipit possimus? Cupiditate numquam culpa veritatis modi sunt eum at excepturi, explicabo quia, ipsam quaerat!
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste modi eaque pariatur, qui eveniet
+                    sequi suscipit possimus? Cupiditate numquam culpa veritatis modi sunt eum at excepturi, explicabo
+                    quia, ipsam quaerat!
                 </p>
 
                 <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam accusamus minima, quae facere, temporibus deserunt consectetur a minus vitae impedit quaerat odio eligendi culpa quam aspernatur! Ad iste distinctio consectetur?
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam accusamus minima, quae facere,
+                    temporibus deserunt consectetur a minus vitae impedit quaerat odio eligendi culpa quam aspernatur!
+                    Ad iste distinctio consectetur?
                 </p>
 
                 <p>
-                    temporibus deserunt consectetur a minus vitae impedit quaerat odio eligendi culpa quam aspernatur! Ad iste distinctio consectetur?
+                    temporibus deserunt consectetur a minus vitae impedit quaerat odio eligendi culpa quam aspernatur!
+                    Ad iste distinctio consectetur?
                 </p>
 
                 <p>
-                     Ad iste distinctio consectetur?
+                    Ad iste distinctio consectetur?
                 </p>
 
             </div>
 
-            <button id="bntBiblia" onclick="botaoLeitura()">->BIBLIA<-</button>
+            <button id="bntBiblia" onclick="botaoLeitura()">BIBLIA</button>
         </div>
 
 
         <div class="conteudoMain" id="conteudoMain">
-            <h2> ── UMA JORNADA ──  UMA ESCOLHA</h2>
-            <p>"Busquem, pois, em primeiro lugar o Reino de Deus e a sua justiça, e todas essas coisas lhes serão acrescentadas." (Mateus 6:33)</p>
+            <h2> ── UMA JORNADA ── UMA ESCOLHA</h2>
+            <p>"Busquem, pois, em primeiro lugar o Reino de Deus e a sua justiça, e todas essas coisas lhes serão
+                acrescentadas." (Mateus 6:33)</p>
         </div>
 
 
     </main>
 
-    <div style="height: 900px; ">
+    <section>
+        <div class="section-container">
+            <div class="section-container-um">
 
-    </div>
+                <div class="section-mensagem">
+                    <h1 class="section-mensagem-number-um">01</h1>
+                    <h2>O que é um Discipulo?</h2>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eaque rerum laudantium
+                        architecto debitis velit delectus, error alias omnis explicabo suscipit commodi illum,
+                        reprehenderit quidem quas doloribus saepe eveniet!</p>
+                </div>
+
+                <img src="https://pt.thechurchnews.com/resizer/v2/PLY2ABPDK6ZKFJIVKDFLTKSEUU.jpg?auth=b1b3c9990c2c08736caab77d3cb0bf4e039a799c57386521903e35c68578598f&focal=3000%2C2000&width=800&height=533"
+                    alt="">
+            </div>
+
+
+            <div class="section-container-um">
+
+                <img src="https://pt.thechurchnews.com/resizer/v2/PLY2ABPDK6ZKFJIVKDFLTKSEUU.jpg?auth=b1b3c9990c2c08736caab77d3cb0bf4e039a799c57386521903e35c68578598f&focal=3000%2C2000&width=800&height=533"
+                    alt="">
+
+                <div class="section-mensagem">
+                    <h1 class="section-mensagem-number-dois">02</h1>
+                    <h2>O que é a Igreja?</h2>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eaque rerum laudantium
+                        architecto debitis velit delectus, error alias omnis explicabo suscipit commodi illum,
+                        reprehenderit quidem quas doloribus saepe eveniet!</p>
+                </div>
+
+            </div>
+
+            <div class="section-container-um">
+
+                <div class="section-mensagem">
+                    <h1 class="section-mensagem-number-um">03</h1>
+                    <h2>O que é o Pecado?</h2>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laboriosam eaque rerum laudantium
+                        architecto debitis velit delectus, error alias omnis explicabo suscipit commodi illum,
+                        reprehenderit quidem quas doloribus saepe eveniet!</p>
+                </div>
+
+                <img src="https://pt.thechurchnews.com/resizer/v2/PLY2ABPDK6ZKFJIVKDFLTKSEUU.jpg?auth=b1b3c9990c2c08736caab77d3cb0bf4e039a799c57386521903e35c68578598f&focal=3000%2C2000&width=800&height=533"
+                    alt="">
+
+            </div>
+
+        </div>
+    </section>
 </body>
 
 <script>
@@ -121,27 +174,27 @@
     let bntDoisTrue = true;
 
     function botaoJornada() {
-       if(bntUmTrue){
-        conteudoMain.style.opacity = "0"
-        containerMensagemUm.style.opacity = "1"
-        bntUmTrue = false
-       }else{
-        conteudoMain.style.opacity = "1"
-        containerMensagemUm.style.opacity = "0"
-        bntUmTrue = true
-       }
+        if (bntUmTrue) {
+            conteudoMain.style.opacity = "0"
+            containerMensagemUm.style.opacity = "1"
+            bntUmTrue = false
+        } else {
+            conteudoMain.style.opacity = "1"
+            containerMensagemUm.style.opacity = "0"
+            bntUmTrue = true
+        }
     }
 
     function botaoLeitura() {
-        if(bntDoisTrue){
-        conteudoMain.style.opacity = "0"
-        containerMensagemDois.style.opacity = "1"
-        bntDoisTrue = false
-       }else{
-        conteudoMain.style.opacity = "1"
-        containerMensagemDois.style.opacity = "0"
-        bntDoisTrue = true
-       }
+        if (bntDoisTrue) {
+            conteudoMain.style.opacity = "0"
+            containerMensagemDois.style.opacity = "1"
+            bntDoisTrue = false
+        } else {
+            conteudoMain.style.opacity = "1"
+            containerMensagemDois.style.opacity = "0"
+            bntDoisTrue = true
+        }
     }
 </script>
 

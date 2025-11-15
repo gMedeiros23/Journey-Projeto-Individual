@@ -8,8 +8,8 @@ body {
 /*Barra de Navegação*/
 .navBar {
     position: fixed;
-    width: 100%;
-    left: 0;
+    width: 50%;
+    left: 25%;
     top: 0;
     height: 50px;
     background-color: rgba(56, 56, 56, 0.4);
@@ -19,24 +19,28 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    border-radius: 10px;
 }
 
-.navBar a{
+.navA{
     text-decoration: none;
-    color: white;
-    margin-right: 7px;
-    margin-left: 7px;
-}
-
-.navBar button{
     cursor: pointer;
     background-color: transparent;
-    border: none;
-    transition: 1s;
     font-size: 1.3rem;
-    border: 2px solid;
-    color:rgb(167, 156, 115);
+    border-bottom: 2px solid;
+    color:rgb(255, 255, 255);
     margin-right: 10px;
+}
+
+#conta{
+    text-decoration: none;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 1.3rem;
+    border-bottom: 2px solid;
+    color:#ebf566;
+    margin-right: 40px;
 }
 
 .navBar h2{
@@ -177,4 +181,60 @@ main {
     transition: 0.5s;
     position: relative;
     filter: brightness(60%);
+}
+
+/*Section*/
+
+section{
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-container-um{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+
+.section-container-um img{
+    width: 500px;
+}
+
+.section-mensagem{
+    width: 45%;
+    color: white;
+   
+}
+
+.section-mensagem-number-um{
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    font-size: 7rem;
+    color: rgba(190, 178, 178, 0.4);
+}
+
+.section-mensagem-number-dois{
+    position: absolute;
+    top: -50px;
+    right: 38%;
+    font-size: 7rem;
+    color: rgba(190, 178, 178, 0.4);
 }
