@@ -19,7 +19,7 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
+    border: 2px solid grey;
     border-radius: 10px;
 }
 
@@ -211,7 +211,6 @@ section{
     margin-bottom: 50px;
     position: relative;
 }
-
 
 .section-container-um img{
     width: 500px;
