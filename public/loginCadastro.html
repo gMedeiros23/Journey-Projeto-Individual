@@ -5,12 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/loginCadastro.css">
-    <title>Document</title>
+
+    <script src="./js/sessao.js"></script>
+
+    <title>Journey | Login e Cadastro</title>
 </head>
 
 <body>
     <header class="navBar">
-        <a href="./index.html"><h1>Journey</h1></a>
+        <a href="./index.html">
+            <h1>Journey</h1>
+        </a>
     </header>
     <main>
         <div class="container">
@@ -28,6 +33,10 @@
                     <a href="#">Esqueceu a senha?</a>
 
                     <button onclick="entrar()">ENTRAR</button>
+                    
+                    <div id="div_aguardar" class="loading-div">
+                        <img src="./assets/circle-loading.gif" id="loading-gif">
+                    </div>
                 </div>
 
 
@@ -36,7 +45,8 @@
                         Não possui possui cadastro?
                     </h1>
 
-                    <p>Clique no botão abaixo e insira as informações nos campos para se cadastrar e usufruir de todas as funcionalidades.</p>
+                    <p>Clique no botão abaixo e insira as informações nos campos para se cadastrar e usufruir de todas
+                        as funcionalidades.</p>
 
                     <button onclick="toCadastro()">CADASTRO</button>
                 </div>
@@ -74,6 +84,10 @@
             </div>
         </div>
     </main>
+
+    <div id="cardErro">
+        <p id="mensagem_erro">teste</p>
+    </div>
 </body>
 <script>
 
@@ -112,12 +126,78 @@
         }, 700)
     }
 
-    
-    function cadastrar(){
-        toLogin()
+    // Tela de Login
+    function entrar() {
+        aguardar();
+
+        var emailVar = email.value;
+        var senhaVar = senha.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+
+            setTimeout(() => {
+                cardErro.style.display = 'none'
+            }, 3000) 
+
+            mensagem_erro.innerHTML = "ERRO! Preencha todos os campos para autenticação";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    //sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/forum.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+        return false;
     }
 
-    function entrar(){
+    function sumirMensagem() {
+        cardErro.style.display = "none"
     }
 
 </script>
