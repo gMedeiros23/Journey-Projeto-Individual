@@ -5,6 +5,12 @@ body {
     position: relative;
 }
 
+h2{
+    color: #ebf566;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1rem;
+}
+
 /*Barra de Navegação*/
 .navBar {
     position: fixed;
@@ -195,6 +201,13 @@ section{
     align-items: center;
 }
 
+#section-titulo{
+    margin: 0;
+    margin-bottom: 30px;
+    color: white; 
+    font-size: 5rem;
+}
+
 .section-container{
     display: flex;
     flex-direction: column;
@@ -220,6 +233,10 @@ section{
     width: 45%;
     color: white;
    
+}
+
+.section-mensagem h2{
+    border-bottom: 2px solid;
 }
 
 .section-mensagem-number-um{
