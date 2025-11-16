@@ -1,3 +1,5 @@
+
+/*
 var database = require("../database/config");
 
 function buscarPorId(id) {
@@ -25,3 +27,4 @@ function cadastrar(razaoSocial, cnpj) {
 }
 
 module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar };
+*/
