@@ -4,20 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/forum.css">
     <title>Journey | Forum</title>
 </head>
 
 <body>
 
-    <head>
-
-    </head>
+    <header>
+        <h1>Journey</h1>
+        <div>
+            <a href="">Forum</a>
+            <a href="">Dashboard</a>
+            <a href="">Suporte</a>
+        </div>
+        <a href="">Conta</a>
+    </header>
 
     <main>
-        <h1>Ultimos Posts</h1>
+
+        <div id="topicos_em_alta" class="lateral_container">
+            <h2>Topicos em alta</h2>
+        </div>
+
         <div id="posts_container" class="posts_container">
 
+            <div id="criar_post">
+                teste
+            </div>
+
+            <div>
+                teste de novo
+            </div>
+
         </div>
+
+        <div id="meus_posts" class="lateral_container">
+            <h2>Meus Posts</h2>
+        </div>
+
     </main>
 
 </body>
@@ -25,7 +49,7 @@
 <script>
 
     //Colocar um setInterval para testar
-    
+
     fetch("/postagem/listar", {
         method: "GET",
     })
