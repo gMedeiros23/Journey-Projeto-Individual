@@ -43,12 +43,14 @@
         </div>
 
     </main>
+    
 
 </body>
 
 <script>
 
-    //Colocar um setInterval para testar
+    
+    let post = []
 
     fetch("/postagem/listar", {
         method: "GET",
@@ -56,15 +58,24 @@
         .then(function (resposta) {
             resposta.json().then((dadosPostagem) => {
 
-                posts_container.innerHTML = '' // Tentar limpar a div
-
+                posts_container.innerHTML = ''
+                let divPosts = ''
                 dadosPostagem.forEach((postagem) => {
 
-                    posts_container.innerHTML += `
-                        div para cada post
-                        `;
+                    divPosts += `
+                        <div class="post"">
+                            <img src="./" alt="">
+                            <h1>Post</h1>
+                            <span>Categoria</span>
+                            <span>Tópico</span>
 
-                });
+                            <p> 510 Comentarios</p>
+                            <p> 210 Curtidas </p>
+                        </div>
+                        `;
+                        post.push(divPosts)
+                    });
+                posts_container.innerHTML = divPosts;    
             });
         })
         .catch(function (resposta) {
