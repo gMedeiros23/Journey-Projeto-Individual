@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey | Forum</title>
+</head>
+
+<body>
+
+    <head>
+
+    </head>
+
+    <main>
+        <h1>Ultimos Posts</h1>
+        <div id="posts_container" class="posts_container">
+
+        </div>
+    </main>
+
+</body>
+
+<script>
+
+    //Colocar um setInterval para testar
+    
+    fetch("/postagem/listar", {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then((dadosPostagem) => {
+
+                posts_container.innerHTML = '' // Tentar limpar a div
+
+                dadosPostagem.forEach((postagem) => {
+
+                    posts_container.innerHTML += `
+                        div para cada post
+                        `;
+
+                });
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+</script>
+
+</html>

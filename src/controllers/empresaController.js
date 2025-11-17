@@ -1,4 +1,4 @@
-var empresaModel = require("../models/empresaModel");
+/*var empresaModel = require("../models/empresaModel");
 
 function buscarPorCnpj(req, res) {
   var cnpj = req.query.cnpj;
@@ -44,4 +44,4 @@ module.exports = {
   buscarPorId,
   cadastrar,
   listar,
-};
+};*/
