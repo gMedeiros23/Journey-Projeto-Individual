@@ -25,10 +25,15 @@
     </header>
 
     <main>
-
-        <div id="topicos_em_alta" class="lateral_container">
-            <h2>Topicos em alta</h2>
+        <div>
+            <div id="topicos_em_alta" class="lateral_container">
+                <h2>Categorias em alta</h2>
+            </div>
+            <div id="topicos_em_alta" class="lateral_container">
+                <h2>Tags mais utilizadas</h2>
+            </div>
         </div>
+
 
         <div id="posts_container" class="posts_container">
             <div class="post">
@@ -42,19 +47,25 @@
                         <input type="text" placeholder="TAGs, Ex: #Tag1 #Tag2">
                     </div>
 
-                    <div>
+                    <div style="width: 100%;">
                         <textarea placeholder="Título do post" maxlength="100" rows="5" id="textarea_titulo"></textarea>
                         <textarea placeholder="Máximo de 300 caracteres." maxlength="300" rows="5"></textarea>
                     </div>
-
+                    
                     <button style="margin-left: 10px;">Criar POST</button>
                 </span>
             </div>
         </div>
+        <div>
+            <div id="meus_posts" class="lateral_container">
+                <h2>Meus Posts</h2>
+            </div>
 
-        <div id="meus_posts" class="lateral_container">
-            <h2>Meus Posts</h2>
+            <div id="meus_posts" class="lateral_container">
+                <h2>Sites</h2>
+            </div>
         </div>
+
 
     </main>
 
@@ -76,14 +87,16 @@
                 dadosPostagem.forEach((postagem) => {
 
                     divPosts += `
-                        <div class="post"">
+                        <div class="post">
                             <span>
                             <img src="../assets/icon/perfil_padrao.jpg" alt="">
-                            <h1>Post</h1>
+                            <h1>Título do Post</h1>
                             </span>
-                            <span><p>Categoria</p>
+                            <span>
+                            <p>Data de criação</p>
+                            <p>Categoria</p>
                             <p>Tópico</p></span>
-                            <div>
+                            <div id="comentarios_curtidas">
                             <p> 510 Comentarios</p>
                             <p> 210 Curtidas </p>
                             </div>

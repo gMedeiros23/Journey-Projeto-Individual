@@ -20,19 +20,19 @@ main{
 }
 
 .posts_container{
-    background-color: rgb(36, 42, 46);
+    background-color: rgb(26, 30, 33);
     width: 100vh;
     border-radius: 20px;
-    padding: 20px;
 }
 
 .lateral_container{
     background-color: rgb(36, 42, 46);
-    width: 32vh;
+    width: 35vh;
     border-radius: 20px;
     padding: 15px;
     text-align: center;
-    max-height: 400px;
+    height: 280px;
+    margin-bottom: 20px;
 }
 
 .post{
@@ -51,10 +51,8 @@ main{
 
 .post div{
     display: flex;
-    align-self: flex-end;
     flex-direction: column;
-    margin: 0;
-    width: 100%;
+    align-self: flex-end;
 }
 .post img{
     width: 50px;
@@ -65,19 +63,23 @@ main{
 .post span{
     display: flex;
 }
-
 .post button{
     width: 200px;
     height: 40px;
     align-self: center;
     margin-right: 10px;
+    background-color: rgb(95, 81, 33);
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
 }
 
 textarea{
     width: 100%;
-    background-color: rgb(46, 53, 57);
+    background-color: rgb(47, 53, 56);
     color: white;
     border-radius: 5px;
+    border-color: white;
 }
 
 #textarea_titulo{
@@ -90,8 +92,13 @@ textarea{
 }
 
 #post_inputs input, #post_inputs select{
-    background-color: rgb(46, 53, 57);
+    background-color: rgb(48, 53, 56);
     color: white;
     border-radius: 5px;
     height: 30px;
+}
+
+#comentarios_curtidas{
+    display: flex;
+    flex-direction: row;
 }
