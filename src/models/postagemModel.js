@@ -13,7 +13,7 @@ function listar() {
     JOIN curtidas c ON c.fkpostagem = p.id_postagem
     GROUP BY p.id_postagem, u.nome, p.conteudo, p.data
     ORDER BY p.data
-    LIMIT 5;`;
+    LIMIT 3;`;
 
     return database.executar(instrucaoSql);
 }

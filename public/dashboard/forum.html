@@ -11,13 +11,17 @@
 <body>
 
     <header>
-        <h1>Journey</h1>
-        <div>
-            <a href="">Forum</a>
-            <a href="">Dashboard</a>
-            <a href="">Suporte</a>
-        </div>
-        <a href="">Conta</a>
+        <span>
+            <h1>Journey</h1>
+        </span>
+        <span>
+            <div>
+                <a href="">Forum</a>
+                <a href="">Dashboard</a>
+                <a href="">Suporte</a>
+            </div>
+        </span>
+        <span><a href="">Conta</a></span>
     </header>
 
     <main>
@@ -27,15 +31,25 @@
         </div>
 
         <div id="posts_container" class="posts_container">
+            <div class="post">
+                <span><img src="../assets/icon/perfil_padrao.JPG" alt="">
+                    <div id="post_inputs">
+                        <select name="" id="" type="text">
+                            <option value="">Categoria</option>
+                            <option value=""></option>
+                            <option value=""></option>
+                        </select>
+                        <input type="text" placeholder="TAGs, Ex: #Tag1 #Tag2">
+                    </div>
 
-            <div id="criar_post">
-                teste
+                    <div>
+                        <textarea placeholder="Título do post" maxlength="100" rows="5" id="textarea_titulo"></textarea>
+                        <textarea placeholder="Máximo de 300 caracteres." maxlength="300" rows="5"></textarea>
+                    </div>
+
+                    <button style="margin-left: 10px;">Criar POST</button>
+                </span>
             </div>
-
-            <div>
-                teste de novo
-            </div>
-
         </div>
 
         <div id="meus_posts" class="lateral_container">
@@ -43,13 +57,13 @@
         </div>
 
     </main>
-    
+
 
 </body>
 
 <script>
 
-    
+
     let post = []
 
     fetch("/postagem/listar", {
@@ -58,24 +72,26 @@
         .then(function (resposta) {
             resposta.json().then((dadosPostagem) => {
 
-                posts_container.innerHTML = ''
                 let divPosts = ''
                 dadosPostagem.forEach((postagem) => {
 
                     divPosts += `
                         <div class="post"">
-                            <img src="./" alt="">
+                            <span>
+                            <img src="../assets/icon/perfil_padrao.jpg" alt="">
                             <h1>Post</h1>
-                            <span>Categoria</span>
-                            <span>Tópico</span>
-
+                            </span>
+                            <span><p>Categoria</p>
+                            <p>Tópico</p></span>
+                            <div>
                             <p> 510 Comentarios</p>
                             <p> 210 Curtidas </p>
+                            </div>
                         </div>
                         `;
-                        post.push(divPosts)
-                    });
-                posts_container.innerHTML = divPosts;    
+                    post.push(divPosts)
+                });
+                posts_container.innerHTML += divPosts;
             });
         })
         .catch(function (resposta) {
