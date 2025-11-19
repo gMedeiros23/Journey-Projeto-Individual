@@ -70,50 +70,8 @@
 
     </main>
 
-    <div id="post_aberto">
-        <div
-            style="position: absolute; top: 15px; right: 15px;background-color: red; width: 25px; height: 20px; border-radius: 5px;">
-            X
-        </div>
-        <div>
-            <img src="../assets/icon/perfil_padrao.jpg">
-            <h1>Nome do User</h1>
-        </div>
-        <h1>Titulo do Post</h1>
-        <p>Categoria</p>
-        <p>Tags</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos architecto, accusamus, dolorum veritatis
-            quae rerum officia saepe labore dolore modi minima. Ad ducimus voluptatum consequuntur similique omnis!
-            Nesciunt, laborum velit?</p>
-        <p>Data de criação</p>
-        <div>
-            <p
-                style="text-align: center; display: flex; justify-content: center; align-items: center; margin: 0px 20px;">
-                <img src="../assets/icon/comentarios.png" style="width:20px; height:20px;"> Comentar
-            </p>
-
-            <p
-                style="text-align: center; display: flex; justify-content: center; align-items: center; margin: 0px 20px;">
-                <img src="../assets/icon/gostar.png" style="width:20px; height:20px;"> Curtir
-            </p>
-        </div>
-
-        <div style="display: flex; flex-direction: column;">
-            <textarea name="" id="" placeholder="Compartilhe sua opiniao"
-                style="width: 50%; height: 100px;"></textarea><button>Comentar</button>
-        </div>
-
-        <div style="flex-direction: column; border: 1px solid white;">
-            <h1>Comentarios</h1>
-            <div style="border-bottom: 1px solid;">
-                <img src="../assets/icon/perfil_padrao.jpg">
-                <h2>Nome do User</h2>
-
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate quo ratione, vel ab at molestiae.
-                Consequatur nisi aliquam temporibus unde totam illo, suscipit fugiat natus quod eius deserunt
-                consectetur maxime.
-            </div>
-        </div>
+    <div id="post_aberto" class="post_aberto">
+        
     </div>
 
 </body>
@@ -121,6 +79,8 @@
 <script>
 
     usuarioNome.innerHTML = sessionStorage.NOME_USUARIO;
+
+    post_aberto.style.display = 'none';
 
     let cadastrarPost = `<div class="post" style="cursor: auto;">
                 <span><img src="../assets/icon/perfil_padrao.JPG" alt="">
@@ -148,8 +108,7 @@
 
     listar()
 
-    let post = []
-    let comentariosPost = []
+    let post = {}
 
     function listar() {
         setTimeout(() => {
@@ -160,10 +119,11 @@
                     resposta.json().then((dadosPostagem) => {
 
                         let divPosts = ''
+                        let contador = 0
                         dadosPostagem.forEach((postagem) => {
 
                             divPosts += `
-                            <div class="post">
+                            <div class="post" onclick="abrirPost(${contador})">
                                 <span>
                                 <div>
                                 <img src="../assets/icon/perfil_padrao.jpg">
@@ -183,8 +143,8 @@
                                 </div>
                             </div>
                             `;
-                            comentariosPost.push(postagem.conteudo)
-                            post.push(divPosts)
+                            post[contador] = postagem
+                            contador++
                         });
                         posts_container.innerHTML = cadastrarPost;
                         posts_container.innerHTML += divPosts;
@@ -223,6 +183,55 @@
         })
     }
 
+    function abrirPost(contador){
+        post_aberto.style.display = 'block'
+
+        post_aberto.innerHTML = `<div onclick="fecharPost()"
+            style="position: absolute; top: 15px; right: 15px;background-color: red; width: 25px; height: 20px; border-radius: 5px; cursor: pointer;">
+            X
+        </div>
+        <div>
+            <img src="../assets/icon/perfil_padrao.jpg">
+            <h1>${post[contador].nome}</h1>
+        </div>
+        <h1>${post[contador].titulo}</h1>
+        <p>${post[contador].categoria}</p>
+        <p>${post[contador].tags}</p>
+        <p>${post[contador].conteudo}</p>
+        <p>${post[contador].data}</p>
+        <div>
+            <p
+                style="text-align: center; display: flex; justify-content: center; align-items: center; margin: 0px 20px;">
+                <img src="../assets/icon/comentarios.png" style="width:20px; height:20px;"> Comentar
+            </p>
+
+            <p
+                style="text-align: center; display: flex; justify-content: center; align-items: center; margin: 0px 20px;">
+                <img src="../assets/icon/gostar.png" style="width:20px; height:20px;"> Curtir
+            </p>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+            <textarea name="" id="" placeholder="Compartilhe sua opiniao"
+                style="width: 50%; height: 100px;"></textarea><button>Comentar</button>
+        </div>
+
+        <div style="flex-direction: column; border: 1px solid white;">
+            <h1>Comentarios</h1>
+            <div style="border-bottom: 1px solid;">
+                <img src="../assets/icon/perfil_padrao.jpg">
+                <h2>Nome do User</h2>
+
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate quo ratione, vel ab at molestiae.
+                Consequatur nisi aliquam temporibus unde totam illo, suscipit fugiat natus quod eius deserunt
+                consectetur maxime.
+            </div>
+        </div>`
+    }
+    
+    function fecharPost(){
+        post_aberto.style.display = 'none'
+    }
 
 </script>
 
