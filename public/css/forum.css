@@ -12,6 +12,36 @@ header{
     background-color: rgb(36, 42, 46);
     border-radius: 20px;
 }
+header div{
+    display: flex;
+}
+
+header a{
+    text-decoration: none;
+    color: white;
+    margin: 0px 20px;
+    font-size: 25px;
+    padding: 3px;
+    display: flex;
+}
+
+header img{
+    width: 25px;
+    height: 25px;
+}
+
+header span{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    height: 50px;
+}
+
+header a:hover{
+    background-color: rgb(88, 88, 81);
+    border-radius: 5px;
+    box-shadow: 2px 2px;
+}
 
 main{
     display: flex;
@@ -32,7 +62,7 @@ main{
     border-radius: 20px;
     padding: 15px;
     text-align: center;
-    height: 280px;
+    height: 300px;
     margin-bottom: 20px;
 }
 
@@ -81,7 +111,7 @@ textarea{
     background-color: rgb(47, 53, 56);
     color: white;
     border-radius: 5px;
-    border-color: white;
+    
 }
 
 #textarea_titulo{
@@ -110,12 +140,13 @@ textarea{
     top: 11%;
     left: 0;
     background-color: rgb(46, 53, 57);
-    width: 98%;
+    width: 86%;
     height: 83vh;
     max-height: 83vh;
     border-radius: 25px;
-    padding: 15px;
+    padding: 15px 100px;
     overflow: auto;
+    display: none;
 }
 
 #post_aberto img{
