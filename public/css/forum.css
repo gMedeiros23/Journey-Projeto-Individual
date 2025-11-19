@@ -1,6 +1,7 @@
 body{
     background-color: rgb(26, 30, 33);
     color: white;
+    position: relative;
 }
 
 header{
@@ -42,6 +43,7 @@ main{
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .post *{
@@ -101,4 +103,30 @@ textarea{
 #comentarios_curtidas{
     display: flex;
     flex-direction: row;
+}
+
+#post_aberto{
+    position: absolute;
+    top: 11%;
+    left: 0;
+    background-color: rgb(46, 53, 57);
+    width: 98%;
+    height: 83vh;
+    max-height: 83vh;
+    border-radius: 25px;
+    padding: 15px;
+    overflow: auto;
+}
+
+#post_aberto img{
+    width: 50px;
+    border-radius: 50%;
+    height: 50px;
+}
+
+#post_aberto div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }

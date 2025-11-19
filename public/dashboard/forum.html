@@ -36,13 +36,16 @@
 
 
         <div id="posts_container" class="posts_container">
-            <div class="post">
+            <div class="post" style="cursor: auto;">
                 <span><img src="../assets/icon/perfil_padrao.JPG" alt="">
                     <div id="post_inputs">
                         <select name="" id="" type="text">
                             <option value="">Categoria</option>
-                            <option value=""></option>
-                            <option value=""></option>
+                            <option value="">Pentateuco</option>
+                            <option value="">Evangelhos</option>
+                            <option value="">Contexto histórico e cultural</option>
+                            <option value="">Temas teológicos</option>
+                            <option value="">Trindade</option>
                         </select>
                         <input type="text" placeholder="TAGs, Ex: #Tag1 #Tag2">
                     </div>
@@ -51,7 +54,6 @@
                         <textarea placeholder="Título do post" maxlength="100" rows="5" id="textarea_titulo"></textarea>
                         <textarea placeholder="Máximo de 300 caracteres." maxlength="300" rows="5"></textarea>
                     </div>
-                    
                     <button style="margin-left: 10px;">Criar POST</button>
                 </span>
             </div>
@@ -60,20 +62,44 @@
             <div id="meus_posts" class="lateral_container">
                 <h2>Meus Posts</h2>
             </div>
-
             <div id="meus_posts" class="lateral_container">
                 <h2>Sites</h2>
             </div>
         </div>
 
-
     </main>
+
+
+    <div id="post_aberto">
+        <div>
+            <img src="../assets/icon/perfil_padrao.jpg">
+            <h1>Nome do User</h1>
+        </div>
+        <h1>Titulo do Post</h1>
+        <p>Categoria</p>
+        <p>Tags</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos architecto, accusamus, dolorum veritatis quae rerum officia saepe labore dolore modi minima. Ad ducimus voluptatum consequuntur similique omnis! Nesciunt, laborum velit?</p>
+        <p>Data de criação</p>
+        <div>
+            <p style="text-align: center; display: flex; justify-content: center; align-items: center; margin: 0px 20px;"><img src="../assets/icon/comentarios.png" style="width:20px; height:20px;"> Comentar</p>
+
+            <p style="text-align: center; display: flex; justify-content: center; align-items: center; margin: 0px 20px;"><img src="../assets/icon/gostar.png" style="width:20px; height:20px;"> Curtir</p>
+        </div>
+
+        <div style="flex-direction: column;">
+            <h1>Comentarios</h1>
+            <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate quo ratione, vel ab at molestiae. Consequatur nisi aliquam temporibus unde totam illo, suscipit fugiat natus quod eius deserunt consectetur maxime.</div>
+        </div>
+    </div>
 
 
 </body>
 
 <script>
 
+    function teste() {
+        alert('teste')
+    }
 
     let post = []
 
@@ -89,7 +115,7 @@
                     divPosts += `
                         <div class="post">
                             <span>
-                            <img src="../assets/icon/perfil_padrao.jpg" alt="">
+                            <img src="../assets/icon/perfil_padrao.jpg">
                             <h1>Título do Post</h1>
                             </span>
                             <span>
@@ -97,8 +123,10 @@
                             <p>Categoria</p>
                             <p>Tópico</p></span>
                             <div id="comentarios_curtidas">
-                            <p> 510 Comentarios</p>
-                            <p> 210 Curtidas </p>
+                            
+                            <p style="text-align: center; display: flex; justify-content: center; align-items: center;"><img src="../assets/icon/comentarios.png" style="width:20px; height:20px;"> 510</p>
+
+                            <p style="text-align: center; display: flex; justify-content: center; align-items: center;"><img src="../assets/icon/gostar.png" style="width:20px; height:20px;"> 210</p>
                             </div>
                         </div>
                         `;
