@@ -19,7 +19,8 @@
                 <a href=""><img src="../assets/icon/suporte-tecnico.png" alt=""></a>
             </div>
         </span>
-        <span><img src="../assets/icon/perfil_padrao.JPG" alt="" style="border-radius: 50%;">nome_usuario<a href=""><img src="../assets/icon/sair.png" alt=""></a></span>
+        <span><img src="../assets/icon/perfil_padrao.JPG" alt="" style="border-radius: 50%;"><span id="usuarioNome"></span><a href=""><img
+                    src="../assets/icon/sair.png" alt=""></a></span>
     </header>
 
     <main>
@@ -37,22 +38,24 @@
             <div class="post" style="cursor: auto;">
                 <span><img src="../assets/icon/perfil_padrao.JPG" alt="">
                     <div id="post_inputs">
-                        <select name="" id="" type="text">
-                            <option value="">Categoria</option>
-                            <option value="">Pentateuco</option>
-                            <option value="">Evangelhos</option>
-                            <option value="">Contexto histórico e cultural</option>
-                            <option value="">Temas teológicos</option>
-                            <option value="">Trindade</option>
+                        <select name="" id="selCategoria" type="text">
+                            <option value="Categoria">Categoria</option>
+                            <option value="Pentateuco">Pentateuco</option>
+                            <option value="Evangelhos">Evangelhos</option>
+                            <option value="Contexto histórico e cultural">Contexto histórico e cultural</option>
+                            <option value="Temas teológicos">Temas teológicos</option>
+                            <option value="Trindade">Trindade</option>
                         </select>
-                        <input type="text" placeholder="TAGs, Ex: #Tag1 #Tag2">
+                        <input type="text" placeholder="TAGs, Ex: #Tag1 #Tag2" id="iptTags">
                     </div>
 
                     <div style="width: 100%;">
                         <textarea placeholder="Título do post" maxlength="100" rows="5" id="textarea_titulo"></textarea>
-                        <textarea placeholder="Máximo de 300 caracteres." maxlength="300" rows="5"></textarea>
+                        <textarea placeholder="Máximo de 300 caracteres." maxlength="300" rows="5"
+                            id="textarea_conteudo"></textarea>
                     </div>
-                    <button style="margin-left: 10px;">Criar POST</button>
+                    <button style="margin-left: 10px; cursor: pointer;" onclick="criarPost(), listar()">Criar
+                        POST</button>
                 </span>
             </div>
         </div>
@@ -68,6 +71,10 @@
     </main>
 
     <div id="post_aberto">
+        <div
+            style="position: absolute; top: 15px; right: 15px;background-color: red; width: 25px; height: 20px; border-radius: 5px;">
+            X
+        </div>
         <div>
             <img src="../assets/icon/perfil_padrao.jpg">
             <h1>Nome do User</h1>
@@ -75,18 +82,37 @@
         <h1>Titulo do Post</h1>
         <p>Categoria</p>
         <p>Tags</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos architecto, accusamus, dolorum veritatis quae rerum officia saepe labore dolore modi minima. Ad ducimus voluptatum consequuntur similique omnis! Nesciunt, laborum velit?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos architecto, accusamus, dolorum veritatis
+            quae rerum officia saepe labore dolore modi minima. Ad ducimus voluptatum consequuntur similique omnis!
+            Nesciunt, laborum velit?</p>
         <p>Data de criação</p>
         <div>
-            <p style="text-align: center; display: flex; justify-content: center; align-items: center; margin: 0px 20px;"><img src="../assets/icon/comentarios.png" style="width:20px; height:20px;"> Comentar</p>
+            <p
+                style="text-align: center; display: flex; justify-content: center; align-items: center; margin: 0px 20px;">
+                <img src="../assets/icon/comentarios.png" style="width:20px; height:20px;"> Comentar
+            </p>
 
-            <p style="text-align: center; display: flex; justify-content: center; align-items: center; margin: 0px 20px;"><img src="../assets/icon/gostar.png" style="width:20px; height:20px;"> Curtir</p>
+            <p
+                style="text-align: center; display: flex; justify-content: center; align-items: center; margin: 0px 20px;">
+                <img src="../assets/icon/gostar.png" style="width:20px; height:20px;"> Curtir
+            </p>
         </div>
 
-        <div style="flex-direction: column;">
+        <div style="display: flex; flex-direction: column;">
+            <textarea name="" id="" placeholder="Compartilhe sua opiniao"
+                style="width: 50%; height: 100px;"></textarea><button>Comentar</button>
+        </div>
+
+        <div style="flex-direction: column; border: 1px solid white;">
             <h1>Comentarios</h1>
-            <textarea name="" id="" placeholder="Compartilhe sua opiniao" style="width: 50%; height: 100px;"></textarea> <button>Comentar</button>
-            <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate quo ratione, vel ab at molestiae. Consequatur nisi aliquam temporibus unde totam illo, suscipit fugiat natus quod eius deserunt consectetur maxime.</div>
+            <div style="border-bottom: 1px solid;">
+                <img src="../assets/icon/perfil_padrao.jpg">
+                <h2>Nome do User</h2>
+
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate quo ratione, vel ab at molestiae.
+                Consequatur nisi aliquam temporibus unde totam illo, suscipit fugiat natus quod eius deserunt
+                consectetur maxime.
+            </div>
         </div>
     </div>
 
@@ -94,43 +120,109 @@
 
 <script>
 
+    usuarioNome.innerHTML = sessionStorage.NOME_USUARIO;
+
+    let cadastrarPost = `<div class="post" style="cursor: auto;">
+                <span><img src="../assets/icon/perfil_padrao.JPG" alt="">
+                    <div id="post_inputs">
+                        <select name="" id="selCategoria" type="text">
+                            <option value="Categoria">Categoria</option>
+                            <option value="Pentateuco">Pentateuco</option>
+                            <option value="Evangelhos">Evangelhos</option>
+                            <option value="Contexto histórico e cultural">Contexto histórico e cultural</option>
+                            <option value="Temas teológicos">Temas teológicos</option>
+                            <option value="Trindade">Trindade</option>
+                        </select>
+                        <input type="text" placeholder="TAGs, Ex: #Tag1 #Tag2" id="iptTags">
+                    </div>
+
+                    <div style="width: 100%;">
+                        <textarea placeholder="Título do post" maxlength="100" rows="5" id="textarea_titulo"></textarea>
+                        <textarea placeholder="Máximo de 300 caracteres." maxlength="300" rows="5"
+                            id="textarea_conteudo"></textarea>
+                    </div>
+                    <button style="margin-left: 10px; cursor: pointer;" onclick="criarPost(), listar()">Criar
+                        POST</button>
+                </span>
+            </div>`
+
+    listar()
+
     let post = []
+    let comentariosPost = []
 
-    fetch("/postagem/listar", {
-        method: "GET",
-    })
-        .then(function (resposta) {
-            resposta.json().then((dadosPostagem) => {
+    function listar() {
+        setTimeout(() => {
+            fetch("/postagem/listar", {
+                method: "GET",
+            })
+                .then(function (resposta) {
+                    resposta.json().then((dadosPostagem) => {
 
-                let divPosts = ''
-                dadosPostagem.forEach((postagem) => {
+                        let divPosts = ''
+                        dadosPostagem.forEach((postagem) => {
 
-                    divPosts += `
-                        <div class="post">
-                            <span>
-                            <img src="../assets/icon/perfil_padrao.jpg">
-                            <h1>Título do Post</h1>
-                            </span>
-                            <span>
-                            <p>Data de criação</p>
-                            <p>Categoria</p>
-                            <p>Tópico</p></span>
-                            <div id="comentarios_curtidas">
-                            
-                            <p style="text-align: center; display: flex; justify-content: center; align-items: center;"><img src="../assets/icon/comentarios.png" style="width:20px; height:20px;"> 510</p>
+                            divPosts += `
+                            <div class="post">
+                                <span>
+                                <div>
+                                <img src="../assets/icon/perfil_padrao.jpg">
+                                <p>${postagem.nome}</p>
+                                </div>
+                                <h1>${postagem.titulo}</h1>
+                                </span>
+                                <span>
+                                <p>${postagem.data}</p>
+                                <p>${postagem.categoria}</p>
+                                <p>${postagem.tags}</p></span>
+                                <div id="comentarios_curtidas">
+                                
+                                <p style="text-align: center; display: flex; justify-content: center; align-items: center;"><img src="../assets/icon/comentarios.png" style="width:20px; height:20px;">${postagem.comentarios}</p>
 
-                            <p style="text-align: center; display: flex; justify-content: center; align-items: center;"><img src="../assets/icon/gostar.png" style="width:20px; height:20px;"> 210</p>
+                                <p style="text-align: center; display: flex; justify-content: center; align-items: center;"><img src="../assets/icon/gostar.png" style="width:20px; height:20px;">${postagem.curtidas}</p>
+                                </div>
                             </div>
-                        </div>
-                        `;
-                    post.push(divPosts)
+                            `;
+                            comentariosPost.push(postagem.conteudo)
+                            post.push(divPosts)
+                        });
+                        posts_container.innerHTML = cadastrarPost;
+                        posts_container.innerHTML += divPosts;
+                    });
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
                 });
-                posts_container.innerHTML += divPosts;
-            });
+        }, 1000)
+    }
+
+    function criarPost() {
+        let categoria = selCategoria.value;
+        let tags = iptTags.value
+        let titulo = textarea_titulo.value
+        let conteudo = textarea_conteudo.value
+        let idusuario = sessionStorage.ID_USUARIO;
+
+        selCategoria.value = 'Categoria'
+        iptTags.value = ''
+        textarea_titulo.value = ''
+        textarea_conteudo.value = ''
+
+        fetch("/postagem/cadastrarPost", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                categoriaJson: categoria,
+                tagsJson: tags,
+                tituloJson: titulo,
+                conteudoJson: conteudo,
+                idusuarioJson: idusuario
+            })
         })
-        .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
+    }
+
 
 </script>
 

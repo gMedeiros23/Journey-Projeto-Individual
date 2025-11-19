@@ -23,7 +23,7 @@ function autenticar(req, res) {
                             .then((resultadoUsuario) => {
                                 if (resultadoUsuario.length > 0) {
                                     res.json({
-                                        id: resultadoAutenticar[0].id,
+                                        id: resultadoAutenticar[0].id_usuario,
                                         email: resultadoAutenticar[0].email,
                                         nome: resultadoAutenticar[0].nome,
                                         senha: resultadoAutenticar[0].senha
