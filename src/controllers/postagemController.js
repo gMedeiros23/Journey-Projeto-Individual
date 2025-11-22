@@ -6,6 +6,32 @@ function listar(req, res) {
   });
 }
 
+function listarCategorias(req, res) {
+  postagemModel.listarCategorias().then((resultado) => {
+    res.status(200).json(resultado);
+  });
+}
+
+function listarTags(req, res) {
+  postagemModel.listarTags().then((resultado) => {
+    res.status(200).json(resultado);
+  });
+}
+
+function listarPostUsuario(req, res) {
+  var idUsuario = req.params.idUsuario;
+  postagemModel.listarPostUsuario(idUsuario).then((resultado) => {
+    res.status(200).json(resultado);
+  });
+}
+
+function listarComentarios(req, res) {
+  var idPostagem = req.params.idPostagem;
+  postagemModel.listarComentarios(idPostagem).then((resultado) => {
+    res.status(200).json(resultado);
+  });
+}
+
 function cadastrarPost(req, res) {
 
   var categoria = req.body.categoriaJson;
@@ -34,5 +60,9 @@ function cadastrarPost(req, res) {
 
 module.exports = {
   listar,
-  cadastrarPost
+  cadastrarPost,
+  listarCategorias,
+  listarTags,
+  listarPostUsuario,
+  listarComentarios
 };

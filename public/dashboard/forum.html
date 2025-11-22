@@ -19,16 +19,16 @@
                 <a href=""><img src="../assets/icon/suporte-tecnico.png" alt=""></a>
             </div>
         </span>
-        <span><img src="../assets/icon/perfil_padrao.JPG" alt="" style="border-radius: 50%;"><span id="usuarioNome"></span><a href=""><img
-                    src="../assets/icon/sair.png" alt=""></a></span>
+        <span><img src="../assets/icon/perfil_padrao.JPG" alt="" style="border-radius: 50%;"><span
+                id="usuarioNome"></span><a href=""><img src="../assets/icon/sair.png" alt=""></a></span>
     </header>
 
     <main>
         <div>
-            <div id="topicos_em_alta" class="lateral_container">
+            <div id="categorias_mais_utilizadas" class="lateral_container" style="width: 85%;">
                 <h2>Categorias em alta</h2>
             </div>
-            <div id="topicos_em_alta" class="lateral_container">
+            <div id="tags_em_alta" class="lateral_container" style="width: 85%;">
                 <h2>Tags mais utilizadas</h2>
             </div>
         </div>
@@ -46,7 +46,7 @@
                             <option value="Temas teológicos">Temas teológicos</option>
                             <option value="Trindade">Trindade</option>
                         </select>
-                        <input type="text" placeholder="TAGs, Ex: #Tag1 #Tag2" id="iptTags">
+                        <textarea placeholder="TAGs, Ex: #Tag1 #Tag2" id="iptTags"></textarea>
                     </div>
 
                     <div style="width: 100%;">
@@ -63,7 +63,7 @@
             <div id="meus_posts" class="lateral_container">
                 <h2>Meus Posts</h2>
             </div>
-            <div id="meus_posts" class="lateral_container">
+            <div id="sites" class="lateral_container">
                 <h2>Sites</h2>
             </div>
         </div>
@@ -71,7 +71,7 @@
     </main>
 
     <div id="post_aberto" class="post_aberto">
-        
+
     </div>
 
 </body>
@@ -93,7 +93,7 @@
                             <option value="Temas teológicos">Temas teológicos</option>
                             <option value="Trindade">Trindade</option>
                         </select>
-                        <input type="text" placeholder="TAGs, Ex: #Tag1 #Tag2" id="iptTags">
+                        <textarea placeholder="TAGs, Ex: #Tag1 #Tag2" id="iptTags"></textarea>
                     </div>
 
                     <div style="width: 100%;">
@@ -107,8 +107,12 @@
             </div>`
 
     listar()
+    listarMeuPost()
+    listarCategorias()
+    listarTags()
 
     let post = {}
+    let meupost = {}
 
     function listar() {
         setTimeout(() => {
@@ -123,7 +127,7 @@
                         dadosPostagem.forEach((postagem) => {
 
                             divPosts += `
-                            <div class="post" onclick="abrirPost(${contador})">
+                            <div class="post" onclick="abrirPost(${contador}, ${undefined}, ${postagem.postagem})">
                                 <span>
                                 <div>
                                 <img src="../assets/icon/perfil_padrao.jpg">
@@ -153,8 +157,52 @@
                 .catch(function (resposta) {
                     console.log(`#ERRO: ${resposta}`);
                 });
-        }, 1000)
+        }, 100)
     }
+    function listarMeuPost() {
+        setTimeout(() => {
+            fetch(`/postagem/listarPostUsuario/${sessionStorage.ID_USUARIO}`, {
+                method: "GET",
+            })
+                .then(function (resposta) {
+                    resposta.json().then((dadosPostagem) => {
+
+                        let divPosts = ''
+                        let contador = 0
+                        dadosPostagem.forEach((postagem) => {
+
+                            divPosts += `
+                            <div class="post" onclick="abrirPost(${contador}, ${sessionStorage.ID_USUARIO}, ${postagem.postagem})">
+                                <span>
+                                <div>
+                                <img src="../assets/icon/perfil_padrao.jpg">
+                                <p>${postagem.nome}</p>
+                                </div>
+                                <h4>${postagem.titulo}</h4>
+                                </span>
+                                <span>
+                                <p>${postagem.data}</p>
+                                <div id="comentarios_curtidas">
+                                
+                                <p style="text-align: center; display: flex; justify-content: center; align-items: center;"><img src="../assets/icon/comentarios.png" style="width:20px; height:20px;">${postagem.comentarios}</p>
+
+                                <p style="text-align: center; display: flex; justify-content: center; align-items: center;"><img src="../assets/icon/gostar.png" style="width:20px; height:20px;">${postagem.curtidas}</p>
+                                </div>
+                            </div>
+                            `;
+                            meupost[contador] = postagem
+                            contador++
+                        });
+                        meus_posts.innerHTML = `<h1> Meus Posts </h1>`
+                        meus_posts.innerHTML += divPosts;
+                    });
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+        }, 100)
+    }
+
 
     function criarPost() {
         let categoria = selCategoria.value;
@@ -183,8 +231,17 @@
         })
     }
 
-    function abrirPost(contador){
+    function abrirPost(contador, idUsuario, postagem) {
         post_aberto.style.display = 'block'
+        let jsonTemporario;
+
+        postComentarios(postagem)
+
+        if (idUsuario == undefined) {
+            jsonTemporario = post;
+        } else {
+            jsonTemporario = meupost;
+        }
 
         post_aberto.innerHTML = `<div onclick="fecharPost()"
             style="position: absolute; top: 15px; right: 15px;background-color: red; width: 25px; height: 20px; border-radius: 5px; cursor: pointer;">
@@ -192,19 +249,18 @@
         </div>
         <div>
             <img src="../assets/icon/perfil_padrao.jpg">
-            <h1>${post[contador].nome}</h1>
+            <h1>${jsonTemporario[contador].nome}</h1>
         </div>
-        <h1>${post[contador].titulo}</h1>
-        <p>${post[contador].categoria}</p>
-        <p>${post[contador].tags}</p>
-        <p>${post[contador].conteudo}</p>
-        <p>${post[contador].data}</p>
+        <h1>${jsonTemporario[contador].titulo}</h1>
+        <p>${jsonTemporario[contador].categoria}</p>
+        <p>${jsonTemporario[contador].tags}</p>
+        <p>${jsonTemporario[contador].conteudo}</p>
+        <p>${jsonTemporario[contador].data}</p>
         <div>
             <p
                 style="text-align: center; display: flex; justify-content: center; align-items: center; margin: 0px 20px;">
                 <img src="../assets/icon/comentarios.png" style="width:20px; height:20px;"> Comentar
             </p>
-
             <p
                 style="text-align: center; display: flex; justify-content: center; align-items: center; margin: 0px 20px;">
                 <img src="../assets/icon/gostar.png" style="width:20px; height:20px;"> Curtir
@@ -216,22 +272,105 @@
                 style="width: 50%; height: 100px;"></textarea><button>Comentar</button>
         </div>
 
-        <div style="flex-direction: column; border: 1px solid white;">
+        <div id="comentariosDoPost" style="flex-direction: column; border: 1px solid white;">
             <h1>Comentarios</h1>
-            <div style="border-bottom: 1px solid;">
-                <img src="../assets/icon/perfil_padrao.jpg">
-                <h2>Nome do User</h2>
-
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate quo ratione, vel ab at molestiae.
-                Consequatur nisi aliquam temporibus unde totam illo, suscipit fugiat natus quod eius deserunt
-                consectetur maxime.
-            </div>
         </div>`
     }
-    
-    function fecharPost(){
+
+    function fecharPost() {
         post_aberto.style.display = 'none'
     }
+
+    function listarCategorias() {
+        fetch("/postagem/listarCategorias", {
+            method: "GET",
+        })
+            .then(function (resposta) {
+                resposta.json().then((dadosCategorias) => {
+                    dadosCategorias.forEach((categorias) => {
+                        categorias_mais_utilizadas.innerHTML += `<p style="background-color: rgba(55, 55, 55, 0.7);"><img style="width: 30px;" src="../assets/icon/perfil_padrao.JPG" alt="">${categorias.categoria}</p>`
+                    });
+                });
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+
+    function listarTags() {
+
+        fetch("/postagem/listarTags", {
+            method: "GET",
+        })
+            .then(function (resposta) {
+                resposta.json().then((dadosTags) => {
+                    let contador = 0
+                    dadosTags.forEach((tags) => {
+                        tags_em_alta.innerHTML += `<p>${tags.nome}</p>`
+                        contador++
+                    });
+                });
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+
+    function postComentarios(postagem) { 
+
+         fetch(`/postagem/listarComentarios/${postagem}`, {
+            method: "GET",
+        })
+            .then(function (resposta) {
+                resposta.json().then((comentariosUsuario) => {
+                    
+                    comentariosUsuario.forEach((comentarios) => {
+                        comentariosDoPost.innerHTML += `
+                        <div class="post" style="border-bottom: 1px solid; border-top: 1px solid;">
+                            <span style="align-self: flex-start;">
+                            <img src="../assets/icon/perfil_padrao.jpg">
+                            <h2>${comentarios.nome}</h2>
+                            </span>
+                            <span>
+                            <h3>${comentarios.data}</h3>
+                            <p>${comentarios.conteudo}</p>
+                            </span
+                        </div>`
+                    });
+                });
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+
+    function comentarPost() {
+        let categoria = selCategoria.value;
+        let tags = iptTags.value
+        let titulo = textarea_titulo.value
+        let conteudo = textarea_conteudo.value
+        let idusuario = sessionStorage.ID_USUARIO;
+
+        selCategoria.value = 'Categoria'
+        iptTags.value = ''
+        textarea_titulo.value = ''
+        textarea_conteudo.value = ''
+
+        fetch("/postagem/cadastrarPost", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                categoriaJson: categoria,
+                tagsJson: tags,
+                tituloJson: titulo,
+                conteudoJson: conteudo,
+                idusuarioJson: idusuario
+            })
+        })
+    }
+
 
 </script>
 

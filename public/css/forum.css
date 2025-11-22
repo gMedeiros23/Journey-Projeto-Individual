@@ -55,6 +55,8 @@ main{
     background-color: rgb(26, 30, 33);
     width: 102vh;
     border-radius: 20px;
+    overflow: auto;
+    max-height: 83vh;
 }
 
 .lateral_container{
@@ -65,6 +67,19 @@ main{
     text-align: center;
     height: 300px;
     margin-bottom: 20px;
+}
+
+#topicos_em_alta{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#topicos_em_alta p{
+    width: 50%;
+    border-radius: 5px;
+    margin: 10px;
 }
 
 .post{
@@ -120,8 +135,13 @@ textarea{
 }
 
 #post_inputs{
-    width: 30%;
-    align-self: flex-start;
+    width: 20%;
+    align-self: center;
+}
+
+#post_inputs textarea{
+    width: 95%;
+    height: 75px;
 }
 
 #post_inputs input, #post_inputs select{
@@ -160,4 +180,8 @@ textarea{
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+#meus_posts{
+    overflow: auto;
 }
