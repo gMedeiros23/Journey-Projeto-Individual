@@ -53,7 +53,7 @@ function listarPostUsuario(idUsuario) {
 }
 
 function listarComentarios(idPostagem) {
-    var instrucaoSql2 = `SELECT u.nome, cp.conteudo, cp.data FROM postagem p JOIN usuario u ON p.fkUsuario = u.id_usuario JOIN comentarios_postagem cp ON cp.fkPostagem = p.id_postagem WHERE p.id_postagem = ${idPostagem} ORDER BY cp.data DESC;`;
+    var instrucaoSql2 = `SELECT u.nome, cp.conteudo, DATE_FORMAT(cp.data,'%d-%b-%Y') as data FROM postagem p JOIN usuario u ON p.fkUsuario = u.id_usuario JOIN comentarios_postagem cp ON cp.fkPostagem = p.id_postagem WHERE p.id_postagem = ${idPostagem} ORDER BY cp.data DESC;`;
 
     return database.executar(instrucaoSql2);
 }
@@ -70,7 +70,7 @@ function listarTags() {
     return database.executar(instrucaoSql2);
 }
 
-async function cadastrarPost(categoria, tags, titulo, conteudo, id_usuario) {
+function cadastrarPost(categoria, tags, titulo, conteudo, id_usuario) {
 
     database.executar(`
         INSERT INTO postagem (conteudo, data, titulo, categoria, fkusuario)
@@ -94,6 +94,12 @@ async function cadastrarPost(categoria, tags, titulo, conteudo, id_usuario) {
     `);
 }
 
+function criarComentario(conteudo, id_usuario, idpostagem) {
+    var instrucaoSql2 = `INSERT INTO comentarios_postagem (conteudo, data, fkusuario, fkpostagem) VALUES ('${conteudo}', NOW(), ${id_usuario}, ${idpostagem})`;
+
+    return database.executar(instrucaoSql2);
+}
+
 
 module.exports = {
     listar,
@@ -101,5 +107,6 @@ module.exports = {
     listarCategorias,
     listarTags,
     listarPostUsuario,
-    listarComentarios
+    listarComentarios,
+    criarComentario
 }

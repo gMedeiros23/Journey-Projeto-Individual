@@ -28,6 +28,9 @@ router.post("/cadastrarPost", function (req, res) {
   postagemController.cadastrarPost(req, res);
 });
 
+router.post("/criarComentario", function (req, res) {
+  postagemController.criarComentario(req, res);
+});
 
 
 module.exports = router;

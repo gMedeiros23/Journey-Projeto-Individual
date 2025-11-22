@@ -268,8 +268,8 @@
         </div>
 
         <div style="display: flex; flex-direction: column;">
-            <textarea name="" id="" placeholder="Compartilhe sua opiniao"
-                style="width: 50%; height: 100px;"></textarea><button>Comentar</button>
+            <textarea name="" id="textComentario" placeholder="Compartilhe sua opiniao"
+                style="width: 50%; height: 100px;"></textarea><button onclick= "criarComentario(${postagem})">Comentar</button>
         </div>
 
         <div id="comentariosDoPost" style="flex-direction: column; border: 1px solid white;">
@@ -371,6 +371,27 @@
         })
     }
 
+
+    function criarComentario(postagem) {
+        alert('teste')
+        let conteudo = textComentario.value
+        let idusuario = sessionStorage.ID_USUARIO;
+        let idpostagem = postagem;
+
+       textComentario.value = ''
+
+        fetch("/postagem/criarComentario", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                conteudo: conteudo,
+                idusuario: idusuario,
+                idpostagem: idpostagem
+            })
+        })
+    }
 
 </script>
 

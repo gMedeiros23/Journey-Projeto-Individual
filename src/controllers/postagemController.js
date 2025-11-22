@@ -58,11 +58,36 @@ function cadastrarPost(req, res) {
     );
 }
 
+function criarComentario(req, res) {
+
+  var conteudo = req.body.conteudo;
+  var id_usuario = req.body.idusuario;
+  var idpostagem = req.body.idpostagem;
+
+
+  postagemModel.criarComentario(conteudo, id_usuario, idpostagem)
+    .then(
+      function (resultado) {
+        res.json(resultado);
+      }
+    ).catch(
+      function (erro) {
+        console.log(erro);
+        console.log(
+          "\nHouve um erro ao realizar o cadastro! Erro: ",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      }
+    );
+}
+
 module.exports = {
   listar,
   cadastrarPost,
   listarCategorias,
   listarTags,
   listarPostUsuario,
-  listarComentarios
+  listarComentarios,
+  criarComentario
 };
