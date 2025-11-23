@@ -95,7 +95,13 @@ function cadastrarPost(categoria, tags, titulo, conteudo, id_usuario) {
 }
 
 function criarComentario(conteudo, id_usuario, idpostagem) {
-    var instrucaoSql2 = `INSERT INTO comentarios_postagem (conteudo, data, fkusuario, fkpostagem) VALUES ('${conteudo}', NOW(), ${id_usuario}, ${idpostagem})`;
+    var instrucaoSql2 = `INSERT INTO comentarios_postagem (conteudo, data, fkusuario, fkpostagem) VALUES ('${conteudo}', NOW() ,${id_usuario}, ${idpostagem})`;
+
+    return database.executar(instrucaoSql2);
+}
+
+function curtir(id_usuario, idpostagem) {
+    var instrucaoSql2 = `INSERT INTO curtidas (fkusuario, fkpostagem) VALUES (${id_usuario}, ${idpostagem})`;
 
     return database.executar(instrucaoSql2);
 }
@@ -108,5 +114,6 @@ module.exports = {
     listarTags,
     listarPostUsuario,
     listarComentarios,
-    criarComentario
+    criarComentario,
+    curtir
 }

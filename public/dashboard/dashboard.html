@@ -21,9 +21,8 @@
             </div>
         </span>
         <span><img src="../assets/icon/perfil_padrao.JPG" alt="" style="border-radius: 50%;"><span
-                id="usuarioNome"></span><a href=""><img src="../assets/icon/sair.png" alt=""></a></span>
+                id="usuarioNome"></span><a onclick="sair()"><img src="../assets/icon/sair.png" alt=""></a></span>
     </header>
-
 
     <main>
         <div id="colunaUm">
@@ -64,6 +63,18 @@
 
 </body>
 <script>
+
+    function sair() {
+
+        sessionStorage.EMAIL_USUARIO = '';
+        sessionStorage.NOME_USUARIO = '';
+        sessionStorage.ID_USUARIO = '';
+
+        setTimeout(()=>{
+            window.location = '../login.html'
+        },100)
+    }
+
 
     let totalCurtidas = 0;
     let totalComentarios = 0;

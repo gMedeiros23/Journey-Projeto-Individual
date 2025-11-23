@@ -82,6 +82,28 @@ function criarComentario(req, res) {
     );
 }
 
+function curtir(req, res) {
+
+  var id_usuario = req.body.idusuario;
+  var idpostagem = req.body.idpostagem;
+
+  postagemModel.curtir( id_usuario, idpostagem)
+    .then(
+      function (resultado) {
+        res.json(resultado);
+      }
+    ).catch(
+      function (erro) {
+        console.log(erro);
+        console.log(
+          "\nHouve um erro ao realizar o cadastro! Erro: ",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      }
+    );
+}
+
 module.exports = {
   listar,
   cadastrarPost,
@@ -89,5 +111,6 @@ module.exports = {
   listarTags,
   listarPostUsuario,
   listarComentarios,
-  criarComentario
+  criarComentario,
+  curtir
 };

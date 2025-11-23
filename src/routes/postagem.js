@@ -32,5 +32,9 @@ router.post("/criarComentario", function (req, res) {
   postagemController.criarComentario(req, res);
 });
 
+router.post("/curtir", function (req, res) {
+  postagemController.curtir(req, res);
+});
+
 
 module.exports = router;

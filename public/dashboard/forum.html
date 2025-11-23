@@ -16,20 +16,20 @@
             <div>
                 <a href="./forum.html"><img src="../assets/icon/botao-home.png" alt=""></a>
                 <a href="./dashboard.html"><img src="../assets/icon/painel-de-controle.png" alt=""></a>
-                <a href=""><img src="../assets/icon/suporte-tecnico.png" alt=""></a>
+                <a href="#"><img src="../assets/icon/suporte-tecnico.png" alt=""></a>
             </div>
         </span>
         <span><img src="../assets/icon/perfil_padrao.JPG" alt="" style="border-radius: 50%;"><span
-                id="usuarioNome"></span><a href=""><img src="../assets/icon/sair.png" alt=""></a></span>
+                id="usuarioNome"></span><a onclick="sair()"><img src="../assets/icon/sair.png" alt=""></a></span>
     </header>
 
     <main>
         <div>
             <div id="categorias_mais_utilizadas" class="lateral_container" style="width: 90;">
-                <h2>Categorias em alta</h2>
+                <h3>Ranking de categorias</h3>
             </div>
             <div id="tags_em_alta" class="lateral_container" style="width: 90%;">
-                <h2>Tags mais utilizadas</h2>
+                <h3>Ranking de tags</h3>
             </div>
         </div>
 
@@ -61,10 +61,10 @@
         </div>
         <div>
             <div id="meus_posts" class="lateral_container">
-                <h2>Meus Posts</h2>
+                <h3>Meus Posts</h3>
             </div>
             <div id="sites" class="lateral_container">
-                <h2>Sites</h2>
+                <h2>Links úteis</h2>
             </div>
         </div>
 
@@ -77,6 +77,17 @@
 </body>
 
 <script>
+
+    function sair() {
+
+        sessionStorage.EMAIL_USUARIO = '';
+        sessionStorage.NOME_USUARIO = '';
+        sessionStorage.ID_USUARIO = '';
+
+        setTimeout(()=>{
+            window.location = '../login.html'
+        },100)
+    }
 
     usuarioNome.innerHTML = sessionStorage.NOME_USUARIO;
 
@@ -263,7 +274,7 @@
             </p>
             <p
                 style="text-align: center; display: flex; justify-content: center; align-items: center; margin: 0px 20px;">
-                <img src="../assets/icon/gostar.png" style="width:20px; height:20px;"> Curtir
+                <img src="../assets/icon/gostar.png" style="width:20px; height:20px;"> <button onclick="curtir(${postagem})">Curtir</button>
             </p>
         </div>
 
@@ -316,14 +327,14 @@
             });
     }
 
-    function postComentarios(postagem) { 
+    function postComentarios(postagem) {
 
-         fetch(`/postagem/listarComentarios/${postagem}`, {
+        fetch(`/postagem/listarComentarios/${postagem}`, {
             method: "GET",
         })
             .then(function (resposta) {
                 resposta.json().then((comentariosUsuario) => {
-                    
+
                     comentariosUsuario.forEach((comentarios) => {
                         comentariosDoPost.innerHTML += `
                         <div class="post" style="border-bottom: 1px solid; border-top: 1px solid;">
@@ -378,7 +389,7 @@
         let idusuario = sessionStorage.ID_USUARIO;
         let idpostagem = postagem;
 
-       textComentario.value = ''
+        textComentario.value = ''
 
         fetch("/postagem/criarComentario", {
             method: "POST",
@@ -387,6 +398,22 @@
             },
             body: JSON.stringify({
                 conteudo: conteudo,
+                idusuario: idusuario,
+                idpostagem: idpostagem
+            })
+        })
+    }
+
+    function curtir(postagem) {
+        let idusuario = sessionStorage.ID_USUARIO;
+        let idpostagem = postagem
+
+        fetch("/postagem/curtir", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
                 idusuario: idusuario,
                 idpostagem: idpostagem
             })
