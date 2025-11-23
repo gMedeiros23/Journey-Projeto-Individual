@@ -249,18 +249,19 @@ section{
 .section-mensagem-number-dois{
     position: absolute;
     top: -50px;
-    right: 38%;
+    right: 36%;
     font-size: 7rem;
     color: rgba(190, 178, 178, 0.4);
 }
 
 footer{
-    position: absolute;
     display: flex;
     flex-direction: row;
+    width: 100%;
     justify-content: space-between;
     background-color: rgb(22, 23, 24);
     border-top: 1px solid white;
+    margin-top: 20px;
 }
 
 footer div{
@@ -268,7 +269,7 @@ footer div{
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align:center;
+    text-align: center;
 }
 
 footer div h1{
@@ -289,4 +290,17 @@ footer a{
 
 footer img{
     width: 20px;
+}
+
+.contatos a{
+    margin:0
+}
+
+.contatos{
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
 }
