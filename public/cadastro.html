@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/loginCadastro.css">
+
+    <script src="./js/sessao.js"></script>
+
+    <title>Journey | Login e Cadastro</title>
+</head>
+
+<body>
+    <header class="navBar">
+        <a href="./index.html">
+             <img src="./assets/icon/logotipo.png" style="width: 50px; height: 50px; margin-left: 30px;">
+        </a>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cadastro" id="cadastro">
+                <div class="cadastro-to-login">
+                    <h1>
+                        Ja possui cadastro?
+                    </h1>
+
+                    <p>
+                        Acesse a página de login no botão abaixo e insira seu e-mail e senha para prosseguir.
+                    </p>
+
+                    <button onclick="toLogin()">LOGIN</button>
+                </div>
+
+                <div class="dados-cadastro">
+                    <h1>CADASTRO</h1>
+                    <div>
+                        <label for="nome">Seu nome:</label><br>
+                        <input type="text" id="nome" placeholder="Ex: Gabriel"><br>
+                        <label for="email">Seu e-mail:</label><br>
+                        <input type="text" id="email_cadastro" placeholder="email@email.com"><br>
+                        <label for="senha">Sua senha:</label><br>
+                        <input type="password" id="senha_cadastro" placeholder="************"><br>
+                        <label for="senha">Repetir a senha:</label><br>
+                        <input type="password" id="repetir_senha" placeholder="************"><br>
+                    </div>
+
+                    <button onclick="cadastrar()">CADASTRO</button>
+                    <div id="div_aguardar" class="loading-div">
+                        <img src="./assets/circle-loading.gif" id="loading-gif">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="cardErro">
+        <p id="mensagem_erro">teste</p>
+    </div>
+</body>
+<script>
+    // Tela de Cadastro
+
+    function toLogin(){
+        window.location = './login.html'
+    }
+
+    function cadastrar() {
+        aguardar();
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = nome.value;
+        var emailVar = email_cadastro.value;
+        var senhaVar = senha_cadastro.value;
+        var confirmacaoSenhaVar = repetir_senha.value;
+
+        // Verificando se há algum campo em branco
+        if (
+            nomeVar == "" ||
+            emailVar == "" ||
+            senhaVar == "" ||
+            confirmacaoSenhaVar == ""
+        ) {
+            cardErro.style.display = "block";
+
+            setTimeout(() => {
+                cardErro.style.display = 'none'
+            }, 3000)
+
+            mensagem_erro.innerHTML =
+                "ERRO! Preencha todos os campos para finalizar cadastro";
+            finalizarAguardar();
+            return false;
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    cardErro.style.display = "block";
+
+                    mensagem_erro.innerHTML =
+                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                    setTimeout(() => {
+                        toLogin()
+                        finalizarAguardar();
+                    }, "2000");
+
+                    nome.value = '';
+                    email_cadastro.value = '';
+                    senha_cadastro.value = '';
+                    repetir_senha.value = '';
+
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                finalizarAguardar();
+            });
+
+        return false;
+    }
+</script>
+</html>

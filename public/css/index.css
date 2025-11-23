@@ -37,6 +37,10 @@ h2{
     font-size: 1.3rem;
     border-bottom: 2px solid;
     color:rgb(255, 255, 255);
+    margin-left: 20px;
+}
+
+#container-conta{
     margin-right: 10px;
 }
 
@@ -47,7 +51,7 @@ h2{
     font-size: 1.3rem;
     border-bottom: 2px solid;
     color:#ebf566;
-    margin-right: 40px;
+    margin-right: 5px;
 }
 
 .navBar h2{

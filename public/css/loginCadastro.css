@@ -62,6 +62,7 @@ input{
     background-color: #997f70;
     border-radius: 15px;
     padding-left: 8px;
+    color: white;
 }
 
 main{
@@ -90,8 +91,6 @@ main{
     width:100%;
     background-color: rgba(140, 113, 90, 0.95);
     border: 5px solid #402E24;
-    opacity: 1;
-    transition: 1s;
     border-radius: 70px;
     box-shadow: 5px 10px 5px rgb(32, 31, 31);
 }
@@ -142,8 +141,6 @@ main{
     width: 100%;
     background-color: rgba(140, 113, 90, 0.95);
     border: 5px solid #402E24;
-    opacity: 0;
-    transition: 1s;
     border-radius: 70px;
     box-shadow: 10px 10px 10px rgb(32, 31, 31);
 }
