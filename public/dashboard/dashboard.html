@@ -31,11 +31,13 @@
                 <p>Score de Engajamento</p>
             </div>
 
-            <div>
+            <div id="mediaEngajamento">
                 <p>Média de engajamento por postagem feita</p>
             </div>
 
-            <div>Total de postagens feitas</div>
+            <div>
+                <p>Total de postagens feitas</p>
+            </div>
         </div>
 
         <div id="colunaDois">
@@ -112,6 +114,8 @@
 
     let engajamentoPost = []
     let engajamentoData = []
+    let kpiEngajamento = 0
+    let kpiPost = 0;
     fetch(`/dashboard/engajamento/${sessionStorage.ID_USUARIO}`, {
         method: "GET",
     })
@@ -121,8 +125,12 @@
                 engajamento.forEach((dadosEngajamento) => {
                     engajamentoData.push(dadosEngajamento.data)
                     engajamentoPost.push((dadosEngajamento.totalcomentarios + dadosEngajamento.totalcurtidas) / dadosEngajamento.totalpostagem)
-                    
+                    kpiEngajamento += (dadosEngajamento.totalcomentarios + dadosEngajamento.totalcurtidas)
+                    kpiPost += dadosEngajamento.totalpostagem;
                 });
+
+                kpiEngajamento = kpiEngajamento / kpiPost
+                mediaEngajamento.innerHTML += `<h1>${kpiEngajamento}</h1>`
             });
         })
         .catch(function (resposta) {

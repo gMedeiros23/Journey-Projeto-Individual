@@ -7,11 +7,11 @@ function score(idUsuario) {
                         COUNT(DISTINCT cp.id_comentarios_postagem) AS totalcomentarios
                         FROM usuario u
                         LEFT JOIN postagem p
-                            ON p.fkusuario = u.id_usuario
+                        ON p.fkusuario = u.id_usuario
                         LEFT JOIN curtidas c
-                            ON c.fkpostagem = p.id_postagem
+                        ON c.fkpostagem = p.id_postagem
                         LEFT JOIN comentarios_postagem cp
-                            ON cp.fkpostagem = p.id_postagem
+                        ON cp.fkpostagem = p.id_postagem
                         WHERE u.id_usuario = ${idUsuario} AND p.data >= NOW() - 2592000`;
 
     return database.executar(instrucaoSql);
