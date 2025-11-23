@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dashboard | Journey</title>
+</head>
+
+<body>
+
+    <header>
+        <img src="../assets/icon/logotipo.png" style="width: 50px; height: 50px; margin-left: 30px;">
+        <span>
+            <div>
+                <a href="./forum.html"><img src="../assets/icon/botao-home.png" alt=""></a>
+                <a href="./dashboard.html"><img src="../assets/icon/painel-de-controle.png" alt=""></a>
+                <a href=""><img src="../assets/icon/suporte-tecnico.png" alt=""></a>
+            </div>
+        </span>
+        <span><img src="../assets/icon/perfil_padrao.JPG" alt="" style="border-radius: 50%;"><span
+                id="usuarioNome"></span><a href=""><img src="../assets/icon/sair.png" alt=""></a></span>
+    </header>
+
+
+    <main>
+        <div id="colunaUm">
+            <div id="scoreEngajamento">
+                <p>Score de Engajamento</p>
+            </div>
+
+            <div>
+                <p>Média de engajamento por postagem feita</p>
+            </div>
+
+            <div>Total de postagens feitas</div>
+        </div>
+
+        <div id="colunaDois">
+            <div id="secaoUm">
+                <div style="width: 500px;">
+                    <canvas id="myChart"></canvas>
+                </div>
+                <div style="width: 500px;">
+                    <canvas id="myChart2"></canvas>
+                </div>
+
+            </div>
+
+            <div id="secaoDois">
+                <div style="width: 500px;">
+                    <canvas id="myChart1"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+<script>
+
+    let totalCurtidas = 0;
+    let totalComentarios = 0;
+    let score = 0;
+
+    usuarioNome.innerHTML = sessionStorage.NOME_USUARIO;
+
+    fetch(`/dashboard/score/${sessionStorage.ID_USUARIO}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then((scoreTotal) => {
+
+                let dados = scoreTotal[0];
+
+                totalCurtidas = dados.totalcurtidas
+                totalComentarios = dados.totalcomentarios
+
+                score = (totalCurtidas * 10) + (totalComentarios * 20)
+                scoreEngajamento.innerHTML += `<h1>${score}</h1>`
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+    setTimeout(() => {
+        const ctx1 = document.getElementById('myChart1');
+
+        new Chart(ctx1, {
+            type: 'doughnut',
+            data: {
+                labels: ['Total Curtidas', 'Total Comentarios'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [totalCurtidas, totalComentarios],
+                    borderWidth: 1,
+                    backgroundColor: '#9BD0F5'
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }, 100)
+
+    let engajamentoPost = []
+    let engajamentoData = []
+    fetch(`/dashboard/engajamento/${sessionStorage.ID_USUARIO}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then((engajamento) => {
+
+                engajamento.forEach((dadosEngajamento) => {
+                    engajamentoData.push(dadosEngajamento.data)
+                    engajamentoPost.push((dadosEngajamento.totalcomentarios + dadosEngajamento.totalcurtidas) / dadosEngajamento.totalpostagem)
+                    
+                });
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+    setTimeout(() => {
+        const ctx2 = document.getElementById('myChart2');
+
+        new Chart(ctx2, {
+            type: "line",
+            data: {
+                labels: engajamentoData,
+                datasets: [{
+                    label: "Engajamento dos Posts",
+                    data: engajamentoPost,
+                    borderWidth: 2,
+                    tension: 0.4
+                }]
+            }
+        });
+    }, 100)
+
+
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Sem 1', 'Sem 2', 'Sem3', 'Sem4', 'Sem5', 'Sem6'],
+            datasets: [{
+                label: '# of Votes',
+                data: [20, 21, 15, 5, 2, 3],
+                borderWidth: 1,
+                backgroundColor: '#9BD0F5'
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+</script>
+
+</html>

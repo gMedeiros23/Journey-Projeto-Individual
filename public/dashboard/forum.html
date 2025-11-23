@@ -14,8 +14,8 @@
         <img src="../assets/icon/logotipo.png" style="width: 50px; height: 50px; margin-left: 30px;">
         <span>
             <div>
-                <a href=""><img src="../assets/icon/botao-home.png" alt=""></a>
-                <a href=""><img src="../assets/icon/painel-de-controle.png" alt=""></a>
+                <a href="./forum.html"><img src="../assets/icon/botao-home.png" alt=""></a>
+                <a href="./dashboard.html"><img src="../assets/icon/painel-de-controle.png" alt=""></a>
                 <a href=""><img src="../assets/icon/suporte-tecnico.png" alt=""></a>
             </div>
         </span>
@@ -25,10 +25,10 @@
 
     <main>
         <div>
-            <div id="categorias_mais_utilizadas" class="lateral_container" style="width: 85%;">
+            <div id="categorias_mais_utilizadas" class="lateral_container" style="width: 90;">
                 <h2>Categorias em alta</h2>
             </div>
-            <div id="tags_em_alta" class="lateral_container" style="width: 85%;">
+            <div id="tags_em_alta" class="lateral_container" style="width: 90%;">
                 <h2>Tags mais utilizadas</h2>
             </div>
         </div>
@@ -272,7 +272,7 @@
                 style="width: 50%; height: 100px;"></textarea><button onclick= "criarComentario(${postagem})">Comentar</button>
         </div>
 
-        <div id="comentariosDoPost" style="flex-direction: column; border: 1px solid white;">
+        <div id="comentariosDoPost">
             <h1>Comentarios</h1>
         </div>`
     }
@@ -288,7 +288,7 @@
             .then(function (resposta) {
                 resposta.json().then((dadosCategorias) => {
                     dadosCategorias.forEach((categorias) => {
-                        categorias_mais_utilizadas.innerHTML += `<p style="background-color: rgba(55, 55, 55, 0.7);"><img style="width: 30px;" src="../assets/icon/perfil_padrao.JPG" alt="">${categorias.categoria}</p>`
+                        categorias_mais_utilizadas.innerHTML += `<p id="categoria_p""><img style="width: 30px;" src="../assets/icon/filtrando.png" alt="">${categorias.categoria}</p>`
                     });
                 });
             })

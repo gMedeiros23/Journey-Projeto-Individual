@@ -1,10 +1,10 @@
-body{
+body {
     background-color: rgb(26, 30, 33);
     color: white;
     position: relative;
 }
 
-header{
+header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -12,12 +12,13 @@ header{
     background-color: rgb(36, 42, 46);
     border-radius: 20px;
 }
-header div{
+
+header div {
     display: flex;
     margin-left: 90px;
 }
 
-header a{
+header a {
     text-decoration: none;
     color: white;
     margin: 0px 20px;
@@ -26,32 +27,32 @@ header a{
     display: flex;
 }
 
-header img{
+header img {
     width: 25px;
     height: 25px;
 }
 
-header span{
+header span {
     display: flex;
     text-align: center;
     align-items: center;
     height: 50px;
 }
 
-header a:hover{
+header a:hover {
     background-color: rgb(88, 88, 81);
     border-radius: 5px;
     box-shadow: 2px 2px;
 }
 
-main{
+main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 20px;
 }
 
-.posts_container{
+.posts_container {
     background-color: rgb(26, 30, 33);
     width: 102vh;
     border-radius: 20px;
@@ -59,7 +60,7 @@ main{
     max-height: 83vh;
 }
 
-.lateral_container{
+.lateral_container {
     background-color: rgb(36, 42, 46);
     width: 35vh;
     border-radius: 20px;
@@ -69,20 +70,20 @@ main{
     margin-bottom: 20px;
 }
 
-#topicos_em_alta{
+#topicos_em_alta {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#topicos_em_alta p{
+#topicos_em_alta p {
     width: 50%;
     border-radius: 5px;
     margin: 10px;
 }
 
-.post{
+.post {
     width: 100%;
     background-color: rgb(46, 53, 57);
     border-radius: 20px;
@@ -92,26 +93,28 @@ main{
     cursor: pointer;
 }
 
-.post *{
-    margin:0;
+.post * {
+    margin: 0;
     padding: 3.2px;
 }
 
-.post div{
+.post div {
     display: flex;
     flex-direction: column;
     align-self: flex-end;
 }
-.post img{
+
+.post img {
     width: 50px;
     border-radius: 50%;
     height: 50px;
 }
 
-.post span{
+.post span {
     display: flex;
 }
-.post button{
+
+.post button {
     width: 200px;
     height: 40px;
     align-self: center;
@@ -122,66 +125,83 @@ main{
     color: white;
 }
 
-textarea{
+textarea {
     width: 100%;
     background-color: rgb(47, 53, 56);
     color: white;
     border-radius: 5px;
-    
+
 }
 
-#textarea_titulo{
+#textarea_titulo {
     height: 20px;
 }
 
-#post_inputs{
+#post_inputs {
     width: 20%;
     align-self: center;
 }
 
-#post_inputs textarea{
+#post_inputs textarea {
     width: 95%;
     height: 75px;
 }
 
-#post_inputs input, #post_inputs select{
+#post_inputs input,
+#post_inputs select {
     background-color: rgb(48, 53, 56);
     color: white;
     border-radius: 5px;
     height: 30px;
 }
 
-#comentarios_curtidas{
+#comentarios_curtidas {
     display: flex;
     flex-direction: row;
 }
 
-#post_aberto{
+#post_aberto {
     position: absolute;
     top: 9%;
-    left: 0;
+    left: 8%;
     background-color: rgb(46, 53, 57);
-    width: 86%;
+    width: 70%;
     height: 83vh;
     max-height: 83vh;
+    border: solid 1px;
     border-radius: 25px;
     padding: 15px 100px;
     overflow: auto;
 }
 
-#post_aberto img{
+#post_aberto img {
     width: 50px;
     border-radius: 50%;
     height: 50px;
 }
 
-#post_aberto div{
+#post_aberto div {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-#meus_posts{
+#meus_posts {
     overflow: auto;
+}
+
+#comentariosDoPost {
+    flex-direction: column;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#categoria_p {
+    background-color: rgba(55, 55, 55, 0.7);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 25px;
 }

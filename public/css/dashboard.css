@@ -1,0 +1,98 @@
+body{
+    background-color: rgb(26, 30, 33);
+    color: white;
+    position: relative;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(36, 42, 46);
+    border-radius: 20px;
+}
+header div{
+    display: flex;
+    margin-left: 90px;
+}
+
+header a{
+    text-decoration: none;
+    color: white;
+    margin: 0px 20px;
+    font-size: 25px;
+    padding: 3px;
+    display: flex;
+}
+
+header img{
+    width: 25px;
+    height: 25px;
+}
+
+header span{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    height: 50px;
+}
+
+header a:hover{
+    background-color: rgb(88, 88, 81);
+    border-radius: 5px;
+    box-shadow: 2px 2px;
+}
+
+main{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#colunaUm{
+    background-color: rgb(52, 56, 59);
+    margin-top: 20px;
+    display: flex;
+    width: 20%;
+    height: 84vh;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 25px;
+    padding: 15px;
+}
+
+#colunaUm div{
+    width: 90%;
+    background-color: black;
+    border-radius: 25px;
+    height: 120px;
+}
+
+#colunaDois{
+    background-color: rgb(52, 56, 59);
+    margin-top: 20px;
+    display: flex;
+    width: 74%;
+    height: 84vh;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 25px;
+    padding: 15px;
+}
+
+#secaoUm{
+    display: flex;
+    flex-direction: column;
+}
+
+#secaoUm canvas {
+    background-color: transparent;
+    width: 500px;
+    height: 300px;
+}
+
+#secaoDois{
+    display: flex;
+}
