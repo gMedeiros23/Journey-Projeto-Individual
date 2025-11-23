@@ -2,6 +2,8 @@ var database = require("../database/config");
 
 
 function score(idUsuario) {
+    let seteDiasAtras = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000)).toLocaleString('sv-SE', { timeZone: 'America/Sao_Paulo' })
+    
     var instrucaoSql = `SELECT
                         COUNT(DISTINCT c.id_curtidas) AS totalcurtidas,
                         COUNT(DISTINCT cp.id_comentarios_postagem) AS totalcomentarios
@@ -12,7 +14,7 @@ function score(idUsuario) {
                         ON c.fkpostagem = p.id_postagem
                         LEFT JOIN comentarios_postagem cp
                         ON cp.fkpostagem = p.id_postagem
-                        WHERE u.id_usuario = ${idUsuario} AND p.data >= NOW() - 2592000`;
+                        WHERE u.id_usuario = ${idUsuario} AND p.data >= "${seteDiasAtras}"`;
 
     return database.executar(instrucaoSql);
 }

@@ -64,9 +64,11 @@ main{
 
 #colunaUm div{
     width: 90%;
-    background-color: black;
+    background-color: rgb(40, 46, 51);
     border-radius: 25px;
     height: 120px;
+    border: 1px solid;
+    text-align: center;
 }
 
 #colunaDois{
