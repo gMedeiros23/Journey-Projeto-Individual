@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/sobremim.css">
+    <title>Sobre mim</title>
+</head>
+<body>
+    <header class="navBar" id="navBar">
+        <img src="./assets/icon/logotipo.png" style="width: 50px; height: 50px; margin-left: 30px;">
+
+        <div>
+            <a class="navA" href="./index.html">Inicio</a>
+            <a class="navA" href="./index.html#topicos">Tópicos</a>
+            <a class="navA" href="#">Sobre mim</a>
+        </div>
+
+        <div id="container-conta">
+            <a id="conta" href="./login.html">Login</a>
+            <a id="conta" href="./cadastro.html">Cadastro</a>
+        </div>
+    </header>
+    <main>
+        <div id="sobremim">
+            
+        </div>
+    </main>
+</body>
+<script>
+    let img = [
+        './assets/imgs/gabriel1.jpeg',
+        './assets/imgs/gabriel2.jpeg'
+    ]
+    let dados = [
+        `<div id="nomeImg"><h1>Gabriel Medeiros</h1> <img src="${img[(Math.random()).toFixed(0)]}" alt=""></div>`,
+        '<p>Atualmente tenho 23 anos, estudante de 1º semestre de Analise e Desenvolvimento de Sistemas na SPTECH.</p>',
+        '<p>Como proposta de tema para este projeto, trouxe algo que marcou profundamente minha vida recentemente: Estudar a bíblia.</p>',
+        '<p>Há aproximamente cinco meses eu comece essa jornada estudando e conhecendo mais da palavra, foi um encontro estranho e nada previsível, começando por uma comunidade de estudo bíblico interna da USP tendo abordado minha namorada para começar a estudar a bíblia em conjunto e ela aceitando. Após algumas semanas eu fui convidado para um evento e logo me apaixonei pela comunidade, quase não conhecendo ninguem e ainda assim me senti tão confortavel como se estivesse sentado no sofá de casa.</p>',
+        '<p>Meus estudos começaram após esses eventos e logo me apaixonei pelos ensinamentos que a bíblia proporciona, auto-reflexões e diversos sermões explícitos ou implicitos.</p>',
+        '<p>Este projeto foi feito com o máximo carinho e dedicação, espero que aproveite!</p>'
+    ]
+
+    for(let index = 0; index < dados.length; index++){
+        sobremim.innerHTML += dados[index];
+    }
+</script>
+</html>

@@ -235,7 +235,6 @@ section{
 .section-mensagem{
     width: 45%;
     color: white;
-   
 }
 
 .section-mensagem h2{
@@ -247,7 +246,7 @@ section{
     top: -50px;
     left: -50px;
     font-size: 7rem;
-    color: rgba(190, 178, 178, 0.4);
+    color: rgba(190, 178, 178, 0.2);
 }
 
 .section-mensagem-number-dois{
@@ -255,7 +254,7 @@ section{
     top: -50px;
     right: 36%;
     font-size: 7rem;
-    color: rgba(190, 178, 178, 0.4);
+    color: rgba(190, 178, 178, 0.2);
 }
 
 footer{
