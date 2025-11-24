@@ -14,7 +14,7 @@
 <body>
     <header class="navBar">
         <a href="./index.html">
-             <img src="./assets/icon/logotipo.png" style="width: 50px; height: 50px; margin-left: 30px;">
+            <img src="./assets/icon/logotipo.png" style="width: 50px; height: 50px; margin-left: 30px;">
         </a>
     </header>
     <main>
@@ -58,7 +58,7 @@
 <script>
     // Tela de Login
 
-    function toCadastro(){
+    function toCadastro() {
         window.location = './cadastro.html'
     }
     function entrar() {
@@ -68,13 +68,13 @@
         var senhaVar = senha.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            
-            setTimeout(() => {
-                cardErro.style.display = 'none'
-            }, 3000)
-
+            mostrarErro();
             mensagem_erro.innerHTML = "ERRO! Preencha todos os campos para autenticação";
+            finalizarAguardar();
+            return false;
+        } else if (!emailVar.includes('@') || !emailVar.includes('.')) {
+            mostrarErro();
+            mensagem_erro.innerHTML = "ERRO! Preencha o campo corretamente considerando o exemplo: exemplo@exemplo.com";
             finalizarAguardar();
             return false;
         }
@@ -113,7 +113,7 @@
 
             } else {
 
-                console.log("Houve um erro ao tentar realizar o login!");
+                console.log("Houve um erro ao tentar realizar o login! Verifique e-mail e senha");
 
                 resposta.text().then(texto => {
                     console.error(texto);
@@ -125,6 +125,14 @@
             console.log(erro);
         })
         return false;
+    }
+
+    function mostrarErro() {
+        cardErro.style.display = "block"
+
+        setTimeout(() => {
+            cardErro.style.display = 'none'
+        }, 3000)
     }
 
 </script>
