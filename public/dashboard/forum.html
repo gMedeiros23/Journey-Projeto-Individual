@@ -295,7 +295,7 @@
             .then(function (resposta) {
                 resposta.json().then((dadosCategorias) => {
                     dadosCategorias.forEach((categorias) => {
-                        categorias_mais_utilizadas.innerHTML += `<p id="categoria_p""><img style="width: 30px;" src="../assets/icon/filtrando.png" alt="">${categorias.categoria}</p>`
+                        categorias_mais_utilizadas.innerHTML += `<p id="categoria_p"><img style="width: 30px;" src="../assets/icon/filtrando.png" alt="">${categorias.categoria}</p>`
                     });
                 });
             })

@@ -1,6 +1,6 @@
 body {
-    background-color: rgb(26, 30, 33);
-    color: white;
+    background-color: #BFAE99;
+    color: black;
     position: relative;
 }
 
@@ -9,8 +9,9 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(36, 42, 46);
+    background-color: #59493B;
     border-radius: 20px;
+    color: white;
 }
 
 header div {
@@ -53,7 +54,7 @@ main {
 }
 
 .posts_container {
-    background-color: rgb(26, 30, 33);
+    background-color: #BFAE99;
     width: 102vh;
     border-radius: 20px;
     overflow: auto;
@@ -61,13 +62,14 @@ main {
 }
 
 .lateral_container {
-    background-color: rgb(36, 42, 46);
+    background-color: #A68F7B;
     width: 35vh;
     border-radius: 20px;
     padding: 15px;
     text-align: center;
     height: 300px;
     margin-bottom: 20px;
+    border: 1px solid;
 }
 
 #topicos_em_alta {
@@ -85,7 +87,7 @@ main {
 
 .post {
     width: 96%;
-    background-color: rgb(46, 53, 57);
+    background-color: #F2E9D8;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -93,6 +95,7 @@ main {
     cursor: pointer;
     position: relative;
     padding: 5px;
+    border: 1px solid;
 }
 
 .post * {
@@ -134,10 +137,9 @@ main {
 
 textarea {
     width: 100%;
-    background-color: rgb(47, 53, 56);
-    color: white;
+    background-color: white;
+    color: black;
     border-radius: 5px;
-
 }
 
 #textarea_titulo {
@@ -156,8 +158,8 @@ textarea {
 
 #post_inputs input,
 #post_inputs select {
-    background-color: rgb(48, 53, 56);
-    color: white;
+    background-color: white;
+    color: black;
     border-radius: 5px;
     height: 30px;
 }
@@ -174,7 +176,7 @@ textarea {
     position: absolute;
     top: 9%;
     left: 8%;
-    background-color: rgb(46, 53, 57);
+    background-color: #F2E9D8;
     width: 70%;
     height: 83vh;
     max-height: 83vh;
@@ -203,13 +205,13 @@ textarea {
 
 #comentariosDoPost {
     flex-direction: column;
-    width: 50%;
+    width: 65%;
     margin-right: auto;
     margin-left: auto;
 }
 
 #categoria_p {
-    background-color: rgba(55, 55, 55, 0.7);
+    background-color: rgba(191, 174, 153, 0.5);
     display: flex;
     justify-content: flex-start;
     align-items: center;

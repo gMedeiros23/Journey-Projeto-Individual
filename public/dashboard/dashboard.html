@@ -46,7 +46,8 @@
                     <canvas id="myChart"></canvas>
                 </div>
                 <div style="width: 500px;">
-                    <h2>Média de engajamento diário(7 dias): Total de Curtidas + TotalComentarios / Total de Postagens</h2>
+                    <h2>Média de engajamento diário(7 dias): Total de Curtidas + TotalComentarios / Total de Postagens
+                    </h2>
                     <canvas id="myChart2"></canvas>
                 </div>
 
@@ -70,9 +71,9 @@
         sessionStorage.NOME_USUARIO = '';
         sessionStorage.ID_USUARIO = '';
 
-        setTimeout(()=>{
+        setTimeout(() => {
             window.location = '../login.html'
-        },100)
+        }, 100)
     }
 
 
@@ -119,7 +120,23 @@
                 indexAxis: 'y',
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        grid: {
+                            color: '#20201f',
+                            borderColor: '#20201f',
+                        },
+                        ticks: {
+                            color: '#20201f'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: '#20201f',
+                            borderColor: '#20201f',
+                        },
+                        ticks: {
+                            color: '#20201f'
+                        }
                     }
                 }
             }
@@ -169,6 +186,28 @@
                     borderColor: 'orange',
                     backgroundColor: 'orange'
                 }]
+            }, options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#20201f',
+                            borderColor: '#20201f',
+                        },
+                        ticks: {
+                            color: '#20201f'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: '#20201f',
+                            borderColor: '#20201f',
+                        },
+                        ticks: {
+                            color: '#20201f'
+                        }
+                    }
+                }
             }
         });
     }, 100)
@@ -191,7 +230,23 @@
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        grid: {
+                            color: '#20201f',
+                            borderColor: '#20201f',
+                        },
+                        ticks: {
+                            color: '#20201f'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: '#20201f',
+                            borderColor: '#20201f',
+                        },
+                        ticks: {
+                            color: '#20201f'
+                        }
                     }
                 }
             }

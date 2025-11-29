@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(26, 30, 33);
+    background-color: #BFAE99;
     color: white;
     position: relative;
 }
@@ -9,8 +9,9 @@ header{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(36, 42, 46);
+    background-color: #59493B;
     border-radius: 20px;
+    color: white;
 }
 header div{
     display: flex;
@@ -50,7 +51,7 @@ main{
 }
 
 #colunaUm{
-    background-color: rgb(52, 56, 59);
+    background-color: #A68F7B;
     margin-top: 20px;
     display: flex;
     width: 20%;
@@ -64,7 +65,7 @@ main{
 
 #colunaUm div{
     width: 90%;
-    background-color: rgb(40, 46, 51);
+    background-color: #59493B;
     border-radius: 25px;
     height: 120px;
     border: 1px solid;
@@ -72,7 +73,7 @@ main{
 }
 
 #colunaDois{
-    background-color: rgb(52, 56, 59);
+    background-color: #A68F7B;
     margin-top: 20px;
     display: flex;
     width: 74%;
@@ -97,4 +98,9 @@ main{
 
 #secaoDois{
     display: flex;
+}
+
+h3,h2{
+    color: black;
+    text-align: center;
 }
