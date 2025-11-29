@@ -57,7 +57,7 @@ main {
     width: 102vh;
     border-radius: 20px;
     overflow: auto;
-    max-height: 83vh;
+    max-height: 86vh;
 }
 
 .lateral_container {
@@ -84,13 +84,15 @@ main {
 }
 
 .post {
-    width: 100%;
+    width: 96%;
     background-color: rgb(46, 53, 57);
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
     cursor: pointer;
+    position: relative;
+    padding: 5px;
 }
 
 .post * {
@@ -123,6 +125,11 @@ main {
     border: 1px solid white;
     border-radius: 5px;
     color: white;
+}
+
+.post h1{
+    position: absolute;
+    left: 10%;
 }
 
 textarea {
@@ -158,6 +165,9 @@ textarea {
 #comentarios_curtidas {
     display: flex;
     flex-direction: row;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 #post_aberto {
@@ -204,4 +214,16 @@ textarea {
     justify-content: flex-start;
     align-items: center;
     border-radius: 25px;
+}
+
+.paragrafo{
+    text-align: center; display: flex; justify-content: center; align-items: center;
+}
+
+.post img.imagem{
+    width:20px; height:20px;
+}
+
+#fechar{
+    position: absolute; top: 15px; right: 15px;background-color: red; width: 25px; height: 20px; border-radius: 5px; cursor: pointer;
 }

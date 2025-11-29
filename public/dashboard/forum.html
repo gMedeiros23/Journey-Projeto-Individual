@@ -104,7 +104,7 @@
                             <option value="Temas teológicos">Temas teológicos</option>
                             <option value="Trindade">Trindade</option>
                         </select>
-                        <textarea placeholder="TAGs, Ex: #Tag1 #Tag2" id="iptTags"></textarea>
+                        <textarea placeholder="Ex: #Tag" id="iptTags"></textarea>
                     </div>
 
                     <div style="width: 100%;">
@@ -147,14 +147,14 @@
                                 <h1>${postagem.titulo}</h1>
                                 </span>
                                 <span>
-                                <p>${postagem.data}</p>
-                                <p>${postagem.categoria}</p>
-                                <p>${postagem.tags}</p></span>
-                                <div id="comentarios_curtidas">
+                                    <p>${postagem.categoria}</p>
+                                    <p>${postagem.tags}</p></span>
+                                    <span><p>${postagem.data}</p></span>
+                                    <div id="comentarios_curtidas">
                                 
-                                <p style="text-align: center; display: flex; justify-content: center; align-items: center;"><img src="../assets/icon/comentarios.png" style="width:20px; height:20px;">${postagem.comentarios}</p>
+                                <p class="paragrafo"><img src="../assets/icon/comentarios.png" class="imagem">${postagem.comentarios}</p>
 
-                                <p style="text-align: center; display: flex; justify-content: center; align-items: center;"><img src="../assets/icon/gostar.png" style="width:20px; height:20px;">${postagem.curtidas}</p>
+                                <p class="paragrafo"><img src="../assets/icon/gostar.png" class="imagem">${postagem.curtidas}</p>
                                 </div>
                             </div>
                             `;
@@ -185,19 +185,16 @@
                             divPosts += `
                             <div class="post" onclick="abrirPost(${contador}, ${sessionStorage.ID_USUARIO}, ${postagem.postagem})">
                                 <span>
-                                <div>
                                 <img src="../assets/icon/perfil_padrao.jpg">
                                 <p>${postagem.nome}</p>
-                                </div>
-                                <h4>${postagem.titulo}</h4>
                                 </span>
+                                <h4>${postagem.titulo}</h4>
                                 <span>
                                 <p>${postagem.data}</p>
                                 <div id="comentarios_curtidas">
                                 
-                                <p style="text-align: center; display: flex; justify-content: center; align-items: center;"><img src="../assets/icon/comentarios.png" style="width:20px; height:20px;">${postagem.comentarios}</p>
-
-                                <p style="text-align: center; display: flex; justify-content: center; align-items: center;"><img src="../assets/icon/gostar.png" style="width:20px; height:20px;">${postagem.curtidas}</p>
+                                <p class="paragrafo"><img src="../assets/icon/comentarios.png" class="imagem">${postagem.comentarios}</p>
+                                <p class="paragrafo"><img src="../assets/icon/gostar.png" class="imagem">${postagem.curtidas}</p>
                                 </div>
                             </div>
                             `;
@@ -254,8 +251,7 @@
             jsonTemporario = meupost;
         }
 
-        post_aberto.innerHTML = `<div onclick="fecharPost()"
-            style="position: absolute; top: 15px; right: 15px;background-color: red; width: 25px; height: 20px; border-radius: 5px; cursor: pointer;">
+        post_aberto.innerHTML = `<div onclick="fecharPost()" id="fechar">
             X
         </div>
         <div>
@@ -268,13 +264,13 @@
         <p>${jsonTemporario[contador].conteudo}</p>
         <p>${jsonTemporario[contador].data}</p>
         <div>
-            <p
-                style="text-align: center; display: flex; justify-content: center; align-items: center; margin: 0px 20px;">
-                <img src="../assets/icon/comentarios.png" style="width:20px; height:20px;"> Comentar
+            <p class="paragrafo"
+                style="margin: 0px 20px;">
+                <img src="../assets/icon/comentarios.png" class="imagem"> Comentar
             </p>
-            <p
-                style="text-align: center; display: flex; justify-content: center; align-items: center; margin: 0px 20px;">
-                <img src="../assets/icon/gostar.png" style="width:20px; height:20px;"> <button onclick="curtir(${postagem})">Curtir</button>
+            <p  class="paragrafo"
+                style="margin: 0px 20px;">
+                <img src="../assets/icon/gostar.png" class="imagem"> <button onclick="curtir(${postagem})">Curtir</button>
             </p>
         </div>
 
