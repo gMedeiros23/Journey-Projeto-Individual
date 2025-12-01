@@ -10,6 +10,11 @@
 
 <body>
 
+    <div id="cadastroFoto">
+        Digite a URL da foto de perfil: <input type="text" id="ipt_foto">
+        <button onclick="enviar()">Enviar</button>
+    </div>
+
     <header>
         <img src="../assets/icon/logotipo.png" style="width: 50px; height: 50px; margin-left: 30px;">
         <span>
@@ -19,8 +24,12 @@
                 <a href="#"><img src="../assets/icon/suporte-tecnico.png" alt=""></a>
             </div>
         </span>
-        <span><img src="../assets/icon/perfil_padrao.JPG" alt="" style="border-radius: 50%;"><span
-                id="usuarioNome"></span><a onclick="sair()"><img src="../assets/icon/sair.png" alt=""></a></span>
+        <span id="teste">
+            <a onclick="abrirFoto()">
+            </a>
+            <span id="usuarioNome"></span>
+            <a onclick="sair()"><img src="../assets/icon/sair.png" alt=""></a>
+        </span>
     </header>
 
     <main>
@@ -35,30 +44,8 @@
 
 
         <div id="posts_container" class="posts_container">
-            <div class="post" style="cursor: auto;">
-                <span><img src="../assets/icon/perfil_padrao.JPG" alt="">
-                    <div id="post_inputs">
-                        <select name="" id="selCategoria" type="text">
-                            <option value="Categoria">Categoria</option>
-                            <option value="Pentateuco">Pentateuco</option>
-                            <option value="Evangelhos">Evangelhos</option>
-                            <option value="Contexto histórico e cultural">Contexto histórico e cultural</option>
-                            <option value="Temas teológicos">Temas teológicos</option>
-                            <option value="Trindade">Trindade</option>
-                        </select>
-                        <textarea placeholder="TAGs, Ex: #Tag1 #Tag2" id="iptTags"></textarea>
-                    </div>
-
-                    <div style="width: 100%;">
-                        <textarea placeholder="Título do post" maxlength="100" rows="5" id="textarea_titulo"></textarea>
-                        <textarea placeholder="Máximo de 300 caracteres." maxlength="300" rows="5"
-                            id="textarea_conteudo"></textarea>
-                    </div>
-                    <button style="margin-left: 10px; cursor: pointer;" onclick="criarPost(), listar()">Criar
-                        POST</button>
-                </span>
-            </div>
         </div>
+
         <div>
             <div id="meus_posts" class="lateral_container">
                 <h3>Meus Posts</h3>
@@ -78,52 +65,167 @@
 
 <script>
 
-    function sair() {
+    fetch(`/usuarios/dados/${sessionStorage.ID_USUARIO}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then((dadosUsuario) => {
+                teste.innerHTML = `<a onclick="abrirFoto()">
+                                <img src="${dadosUsuario.foto}" alt="" style="border-radius: 50%;">
+                                </a>
+                                <span id="usuarioNome">${sessionStorage.NOME_USUARIO}</span>
+                                <a onclick="sair()"><img src="../assets/icon/sair.png" alt=""></a>`
 
-        sessionStorage.EMAIL_USUARIO = '';
-        sessionStorage.NOME_USUARIO = '';
-        sessionStorage.ID_USUARIO = '';
+                cadastrarPost = `<div class="post" style="cursor: auto;">
+                                            <span><img src="${dadosUsuario.foto}" alt="">
+                                                <div id="post_inputs">
+                                                    <select name="" id="selCategoria" type="text">
+                                                        <option value="Categoria">Categoria</option>
+                                                        <option value="Pentateuco">Pentateuco</option>
+                                                        <option value="Evangelhos">Evangelhos</option>
+                                                        <option value="Contexto histórico e cultural">Contexto histórico e cultural</option>
+                                                        <option value="Temas teológicos">Temas teológicos</option>
+                                                        <option value="Trindade">Trindade</option>
+                                                    </select>
+                                                    <textarea placeholder="Ex: #Tag" id="iptTags"></textarea>
+                                                </div>
 
-        setTimeout(()=>{
-            window.location = '../login.html'
-        },100)
-    }
+                                                <div style="width: 100%;">
+                                                    <textarea placeholder="Título do post" maxlength="100" rows="5" id="textarea_titulo"></textarea>
+                                                    <textarea placeholder="Máximo de 300 caracteres." maxlength="300" rows="5"
+                                                        id="textarea_conteudo"></textarea>
+                                                </div>
+                                                <button style="margin-left: 10px; cursor: pointer;" onclick="criarPost(), listar()">Criar
+                                                    POST</button>
+                                            </span>
+                                        </div>`
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
 
-    usuarioNome.innerHTML = sessionStorage.NOME_USUARIO;
-
-    post_aberto.style.display = 'none';
-
-    let cadastrarPost = `<div class="post" style="cursor: auto;">
-                <span><img src="../assets/icon/perfil_padrao.JPG" alt="">
-                    <div id="post_inputs">
-                        <select name="" id="selCategoria" type="text">
-                            <option value="Categoria">Categoria</option>
-                            <option value="Pentateuco">Pentateuco</option>
-                            <option value="Evangelhos">Evangelhos</option>
-                            <option value="Contexto histórico e cultural">Contexto histórico e cultural</option>
-                            <option value="Temas teológicos">Temas teológicos</option>
-                            <option value="Trindade">Trindade</option>
-                        </select>
-                        <textarea placeholder="Ex: #Tag" id="iptTags"></textarea>
-                    </div>
-
-                    <div style="width: 100%;">
-                        <textarea placeholder="Título do post" maxlength="100" rows="5" id="textarea_titulo"></textarea>
-                        <textarea placeholder="Máximo de 300 caracteres." maxlength="300" rows="5"
-                            id="textarea_conteudo"></textarea>
-                    </div>
-                    <button style="margin-left: 10px; cursor: pointer;" onclick="criarPost(), listar()">Criar
-                        POST</button>
-                </span>
-            </div>`
+    cadastroFoto.style.display = 'none';
+    let fotoAberta = false;
+    let fotoUsuario = '';
+    let cadastrarPost = '';
 
     listar()
     listarMeuPost()
     listarCategorias()
     listarTags()
 
-    let post = {}
-    let meupost = {}
+    usuarioNome.innerHTML = sessionStorage.NOME_USUARIO;
+    post_aberto.style.display = 'none';
+
+
+    function enviar() {
+
+        let foto = ipt_foto.value;
+        let id_usuario = sessionStorage.ID_USUARIO;
+
+        fetch("/postagem/cadastrarFoto", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                foto: foto,
+                id_usuario: id_usuario
+            })
+        })
+    }
+
+    function abrirFoto() {
+        if (fotoAberta == false) {
+            cadastroFoto.style.display = 'block'
+            fotoAberta = true
+        } else {
+            cadastroFoto.style.display = 'none'
+            fotoAberta = false
+        }
+    }
+
+    function sair() {
+
+        sessionStorage.EMAIL_USUARIO = '';
+        sessionStorage.NOME_USUARIO = '';
+        sessionStorage.ID_USUARIO = '';
+
+        setTimeout(() => {
+            window.location = '../login.html'
+        }, 100)
+    }
+
+    function listarMeuPost() {
+
+        setTimeout(() => {
+
+            fetch(`/postagem/listarPostUsuario/${sessionStorage.ID_USUARIO}`, {
+                method: "GET",
+            })
+                .then(function (resposta) {
+
+                    resposta.json().then((dadosPostagem) => {
+
+                        let divPosts = ''
+                        let contador = 0
+                        dadosPostagem.forEach((postagem) => {
+                            divPosts += `
+                            <div class="post" onclick="abrirPost(${contador}, ${sessionStorage.ID_USUARIO}, ${postagem.postagem})">
+                                <span>
+                                <img src="${postagem.foto}">
+                                <p>${postagem.nome}</p>
+                                </span>
+                                <h4>${postagem.titulo}</h4>
+                                <span>
+                                <p>${postagem.data}</p>
+                                <div id="comentarios_curtidas">
+                                
+                                <p class="paragrafo"><img src="../assets/icon/comentarios.png" class="imagem">${postagem.comentarios}</p>
+                                <p class="paragrafo"><img src="../assets/icon/gostar.png" class="imagem">${postagem.curtidas}</p>
+                                </div>
+                            </div>
+                            `;
+                            meupost[contador] = postagem
+                            contador++
+
+                            cadastrarPost = `<div class="post" style="cursor: auto;">
+                                            <span><img src="${postagem.foto}" alt="">
+                                                <div id="post_inputs">
+                                                    <select name="" id="selCategoria" type="text">
+                                                        <option value="Categoria">Categoria</option>
+                                                        <option value="Pentateuco">Pentateuco</option>
+                                                        <option value="Evangelhos">Evangelhos</option>
+                                                        <option value="Contexto histórico e cultural">Contexto histórico e cultural</option>
+                                                        <option value="Temas teológicos">Temas teológicos</option>
+                                                        <option value="Trindade">Trindade</option>
+                                                    </select>
+                                                    <textarea placeholder="Ex: #Tag" id="iptTags"></textarea>
+                                                </div>
+
+                                                <div style="width: 100%;">
+                                                    <textarea placeholder="Título do post" maxlength="100" rows="5" id="textarea_titulo"></textarea>
+                                                    <textarea placeholder="Máximo de 300 caracteres." maxlength="300" rows="5"
+                                                        id="textarea_conteudo"></textarea>
+                                                </div>
+                                                <button style="margin-left: 10px; cursor: pointer;" onclick="criarPost(), listar()">Criar
+                                                    POST</button>
+                                            </span>
+                                        </div>`
+
+                            meus_posts.innerHTML = `<h1> Meus Posts </h1>`
+                            meus_posts.innerHTML += divPosts;
+                        });
+                    })
+                        .catch(function (resposta) {
+                            console.log(`#ERRO: ${resposta}`);
+                        });
+                }, 100)
+        })
+    }
+    let post = []
+    let meupost = []
 
     function listar() {
         setTimeout(() => {
@@ -141,20 +243,20 @@
                             <div class="post" onclick="abrirPost(${contador}, ${undefined}, ${postagem.postagem})">
                                 <span>
                                 <div>
-                                <img src="../assets/icon/perfil_padrao.jpg">
+                                <img src="${postagem.foto}">
                                 <p>${postagem.nome}</p>
                                 </div>
                                 <h1>${postagem.titulo}</h1>
                                 </span>
-                                <span>
-                                    <p>${postagem.categoria}</p>
-                                    <p>${postagem.tags}</p></span>
-                                    <span><p>${postagem.data}</p></span>
-                                    <div id="comentarios_curtidas">
+                                <span><p>${postagem.categoria}</p></span>  
+                                <span><p>${postagem.tags}</p></span>
+                                <span id="data"><p>${postagem.data}</p></span>
                                 
-                                <p class="paragrafo"><img src="../assets/icon/comentarios.png" class="imagem">${postagem.comentarios}</p>
+                                <div id="comentarios_curtidas">
+                                
+                                    <p class="paragrafo">${postagem.comentarios} Comentarios<img src="../assets/icon/comentarios.png" class="imagem"></p>
 
-                                <p class="paragrafo"><img src="../assets/icon/gostar.png" class="imagem">${postagem.curtidas}</p>
+                                    <p class="paragrafo">${postagem.curtidas} Curtidas<img src="../assets/icon/gostar.png" class="imagem"></p>
                                 </div>
                             </div>
                             `;
@@ -168,47 +270,7 @@
                 .catch(function (resposta) {
                     console.log(`#ERRO: ${resposta}`);
                 });
-        }, 100)
-    }
-    function listarMeuPost() {
-        setTimeout(() => {
-            fetch(`/postagem/listarPostUsuario/${sessionStorage.ID_USUARIO}`, {
-                method: "GET",
-            })
-                .then(function (resposta) {
-                    resposta.json().then((dadosPostagem) => {
-
-                        let divPosts = ''
-                        let contador = 0
-                        dadosPostagem.forEach((postagem) => {
-
-                            divPosts += `
-                            <div class="post" onclick="abrirPost(${contador}, ${sessionStorage.ID_USUARIO}, ${postagem.postagem})">
-                                <span>
-                                <img src="../assets/icon/perfil_padrao.jpg">
-                                <p>${postagem.nome}</p>
-                                </span>
-                                <h4>${postagem.titulo}</h4>
-                                <span>
-                                <p>${postagem.data}</p>
-                                <div id="comentarios_curtidas">
-                                
-                                <p class="paragrafo"><img src="../assets/icon/comentarios.png" class="imagem">${postagem.comentarios}</p>
-                                <p class="paragrafo"><img src="../assets/icon/gostar.png" class="imagem">${postagem.curtidas}</p>
-                                </div>
-                            </div>
-                            `;
-                            meupost[contador] = postagem
-                            contador++
-                        });
-                        meus_posts.innerHTML = `<h1> Meus Posts </h1>`
-                        meus_posts.innerHTML += divPosts;
-                    });
-                })
-                .catch(function (resposta) {
-                    console.log(`#ERRO: ${resposta}`);
-                });
-        }, 100)
+        }, 200)
     }
 
 
@@ -255,7 +317,7 @@
             X
         </div>
         <div>
-            <img src="../assets/icon/perfil_padrao.jpg">
+            <img src="${jsonTemporario[contador].foto}">
             <h1>${jsonTemporario[contador].nome}</h1>
         </div>
         <h1>${jsonTemporario[contador].titulo}</h1>
@@ -335,7 +397,7 @@
                         comentariosDoPost.innerHTML += `
                         <div class="post" style="border-bottom: 1px solid; border-top: 1px solid;">
                             <span style="align-self: flex-start;">
-                            <img src="../assets/icon/perfil_padrao.jpg">
+                            <img src="${comentarios.foto}">
                             <h2>${comentarios.nome}</h2>
                             </span>
                             <span>
@@ -380,7 +442,6 @@
 
 
     function criarComentario(postagem) {
-        alert('teste')
         let conteudo = textComentario.value
         let idusuario = sessionStorage.ID_USUARIO;
         let idpostagem = postagem;

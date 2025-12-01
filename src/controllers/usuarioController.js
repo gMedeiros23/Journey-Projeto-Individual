@@ -46,7 +46,7 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var fkEmpresa = req.body.idEmpresaVincularServer;
+    var foto = req.body.foto;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -58,7 +58,7 @@ function cadastrar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, fkEmpresa)
+        usuarioModel.cadastrar(nome, email, senha, foto)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -76,7 +76,39 @@ function cadastrar(req, res) {
     }
 }
 
+function dados(req, res) {
+    var idusuario = req.params.idusuario;
+
+    if (idusuario == undefined) {
+        res.status(400).send("Seu id está undefined!");
+    } else {
+        usuarioModel.dados(idusuario)
+            .then(
+                function (resultadoDados) {
+                    console.log(`\nResultados encontrados: ${resultadoDados.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultadoDados)}`); // transforma JSON em String
+
+                    if (resultadoDados.length == 1) {
+                        res.json({
+                            foto: resultadoDados[0].foto,
+                        });
+
+                    } else if (resultadoDados.length == 0) {
+                        res.status(403).send("Foto inválida");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao puxar a foto Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+}
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    dados
 }

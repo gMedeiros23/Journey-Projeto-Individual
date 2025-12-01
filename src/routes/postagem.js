@@ -36,5 +36,9 @@ router.post("/curtir", function (req, res) {
   postagemController.curtir(req, res);
 });
 
+router.post("/cadastrarFoto", function (req, res) {
+  postagemController.cadastrarFoto(req, res);
+});
+
 
 module.exports = router;

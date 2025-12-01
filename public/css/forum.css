@@ -229,3 +229,22 @@ textarea {
 #fechar{
     position: absolute; top: 15px; right: 15px;background-color: red; width: 25px; height: 20px; border-radius: 5px; cursor: pointer;
 }
+
+#cadastroFoto{
+    position: absolute;
+    right: 25px;
+    top: 50px;
+    width: 200px;
+    height: 100px;
+    background-color: #BFAE99;
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 25px;
+    z-index: 1000;
+}
+
+#data{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}

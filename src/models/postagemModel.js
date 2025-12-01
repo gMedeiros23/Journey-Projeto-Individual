@@ -3,6 +3,7 @@ var database = require("../database/config");
 function listar() {
     var instrucaoSql = `SELECT
     p.id_postagem as postagem,
+    u.foto_perfil as foto,
     u.nome AS nome,
     DATE_FORMAT(p.data,'%d-%b-%Y') as data,
     p.titulo AS titulo,
@@ -29,6 +30,7 @@ function listarPostUsuario(idUsuario) {
 
     var instrucaoSql = `SELECT 
     p.id_postagem as postagem,
+    u.foto_perfil as foto,
     u.nome AS nome,
     DATE_FORMAT(p.data,'%d-%b-%Y') as data,
     p.titulo AS titulo,
@@ -53,7 +55,11 @@ function listarPostUsuario(idUsuario) {
 }
 
 function listarComentarios(idPostagem) {
-    var instrucaoSql2 = `SELECT u.nome, cp.conteudo, DATE_FORMAT(cp.data,'%d-%b-%Y') as data FROM postagem p JOIN usuario u ON p.fkUsuario = u.id_usuario JOIN comentarios_postagem cp ON cp.fkPostagem = p.id_postagem WHERE p.id_postagem = ${idPostagem} ORDER BY cp.data DESC;`;
+        var instrucaoSql2 = `SELECT u.id_usuario, p.fkUsuario, u.nome, u.foto_perfil as foto, cp.conteudo, DATE_FORMAT(cp.data,'%d-%b-%Y') as data 
+        FROM comentarios_postagem cp JOIN usuario u
+        ON cp.fkUsuario = u.id_usuario
+        JOIN postagem p
+        ON cp.fkPostagem = p.id_postagem WHERE p.id_postagem = ${idPostagem} ORDER BY cp.data DESC;`;
 
     return database.executar(instrucaoSql2);
 }
@@ -73,7 +79,7 @@ function listarTags() {
 function cadastrarPost(categoria, tags, titulo, conteudo, id_usuario) {
 
     database.executar(`
-        INSERT INTO postagem (conteudo, data, titulo, categoria, fkusuario)
+        INSERT INTO postagem (conteudo, data, titulo, categoria, fkusuario) 
         VALUES ('${conteudo}', NOW(), '${titulo}', '${categoria}', ${id_usuario});
     `);
 
@@ -106,6 +112,12 @@ function curtir(id_usuario, idpostagem) {
     return database.executar(instrucaoSql2);
 }
 
+function cadastrarFoto(foto, id_usuario) {
+    var instrucaoSql2 = `UPDATE usuario SET foto_perfil = '${foto}' WHERE id_usuario = ${id_usuario}`;
+
+    return database.executar(instrucaoSql2);
+}
+
 
 module.exports = {
     listar,
@@ -115,5 +127,6 @@ module.exports = {
     listarPostUsuario,
     listarComentarios,
     criarComentario,
-    curtir
+    curtir,
+    cadastrarFoto
 }
