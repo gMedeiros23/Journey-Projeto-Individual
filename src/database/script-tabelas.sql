@@ -1,62 +1,57 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
+CREATE DATABASE journey;
 
-/*
-comandos para mysql server
-*/
+USE journey;
 
-CREATE DATABASE aquatech;
-
-USE aquatech;
-
-CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14),
-	codigo_ativacao VARCHAR(50)
+CREATE TABLE usuario(
+id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(200),
+email VARCHAR(200),
+senha VARCHAR(200),
+foto_perfil VARCHAR(200)
 );
 
-CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+CREATE TABLE postagem(
+id_postagem INT PRIMARY KEY AUTO_INCREMENT,
+conteudo VARCHAR(700),
+data DATETIME,
+titulo VARCHAR(100),
+categoria VARCHAR(100),
+fkusuario INT,
+FOREIGN KEY(fkusuario) REFERENCES usuario(id_usuario)
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+CREATE TABLE comentarios_postagem(
+id_comentarios_postagem INT AUTO_INCREMENT,
+fkpostagem INT,
+fkusuario INT,
+conteudo VARCHAR(300),
+data DATETIME,
+PRIMARY KEY(id_comentarios_postagem, fkpostagem, fkusuario),
+FOREIGN KEY(fkpostagem) REFERENCES postagem(id_postagem),
+FOREIGN KEY(fkusuario) REFERENCES usuario(id_usuario)
+) AUTO_INCREMENT = 1000;
+
+CREATE TABLE curtidas(
+id_curtidas INT AUTO_INCREMENT,
+fkpostagem INT,
+fkusuario INT,
+PRIMARY KEY(id_curtidas, fkpostagem, fkusuario),
+FOREIGN KEY(fkpostagem) REFERENCES postagem(id_postagem),
+FOREIGN KEY(fkusuario) REFERENCES usuario(id_usuario),
+CONSTRAINT unq_usuario_post UNIQUE (fkUsuario, fkPostagem)
+) AUTO_INCREMENT = 1000;
+
+CREATE TABLE tags(
+id_tags INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(100)
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+CREATE TABLE tags_post(
+	fkpostagem INT,
+    fkusuario INT,
+    fktags INT,
+    PRIMARY KEY(fkpostagem, fkusuario, fktags),
+    FOREIGN KEY(fkpostagem) REFERENCES postagem(id_postagem),
+	FOREIGN KEY(fkusuario) REFERENCES usuario(id_usuario),
+    FOREIGN KEY(fktags) REFERENCES tags(id_tags)
 );
-
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
-
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
-);
-
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B');
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
-insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
-insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado', 2);
