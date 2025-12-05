@@ -14,7 +14,7 @@
 <body>
     <header class="navBar">
         <a href="./index.html">
-             <img src="./assets/icon/logotipo.png" style="width: 50px; height: 50px; margin-left: 30px;">
+            <img src="./assets/icon/logotipo.png" style="width: 50px; height: 50px; margin-left: 30px;">
         </a>
     </header>
     <main>
@@ -59,28 +59,29 @@
     </div>
 </body>
 <script>
-    // Tela de Cadastro
 
-    function toLogin(){
+    function toLogin() {
         window.location = './login.html'
     }
 
     function cadastrar() {
         aguardar();
 
-        //Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
         var nomeVar = nome.value;
         var emailVar = email_cadastro.value;
         var senhaVar = senha_cadastro.value;
         var confirmacaoSenhaVar = repetir_senha.value;
 
-        // Verificando se há algum campo em branco
+
         if (
             nomeVar == "" ||
             emailVar == "" ||
             senhaVar == "" ||
-            confirmacaoSenhaVar == ""
+            confirmacaoSenhaVar == "" || 
+            confirmacaoSenhaVar != senhaVar || 
+            !emailVar.includes('@') || 
+            !emailVar.includes('.com') ||
+            senhaVar.length < 8
         ) {
             cardErro.style.display = "block";
 
@@ -89,25 +90,24 @@
             }, 3000)
 
             mensagem_erro.innerHTML =
-                "ERRO! Preencha todos os campos para finalizar cadastro";
+                "ERRO! Preencha todos os campos corretamente para finalizar cadastro";
             finalizarAguardar();
             return false;
         }
 
-        // Enviando o valor da nova input
+        
         fetch("/usuarios/cadastrar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
+        
                 nomeServer: nomeVar,
                 emailServer: emailVar,
                 senhaServer: senhaVar,
                 foto: 'https://img.freepik.com/vetores-premium/icone-de-perfil-de-avatar-padrao-imagem-de-usuario-de-midia-social-icone-de-avatar-cinza-silhueta-de-perfil-em-branco-ilustracao-vetorial_561158-3383.jpg?w=360'
-                
+
             }),
         })
             .then(function (resposta) {
@@ -135,10 +135,14 @@
             })
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
+                setTimeout(() => {
+                    mensagem_erro.innerHTML = "Erro ao cadastrar: E-mail já cadastrado";
+                }, 3000)
                 finalizarAguardar();
             });
 
         return false;
     }
 </script>
+
 </html>

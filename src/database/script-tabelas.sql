@@ -5,18 +5,19 @@ USE journey;
 CREATE TABLE usuario(
 id_usuario INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(200),
-email VARCHAR(200),
+email VARCHAR(200) UNIQUE,
 senha VARCHAR(200),
 foto_perfil VARCHAR(200)
 );
 
 CREATE TABLE postagem(
-id_postagem INT PRIMARY KEY AUTO_INCREMENT,
+id_postagem INT AUTO_INCREMENT,
 conteudo VARCHAR(700),
 data DATETIME,
 titulo VARCHAR(100),
 categoria VARCHAR(100),
 fkusuario INT,
+PRIMARY KEY(id_postagem, fkusuario),
 FOREIGN KEY(fkusuario) REFERENCES usuario(id_usuario)
 );
 

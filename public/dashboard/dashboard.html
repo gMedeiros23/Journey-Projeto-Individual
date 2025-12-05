@@ -17,11 +17,14 @@
             <div>
                 <a href="./forum.html"><img src="../assets/icon/botao-home.png" alt=""></a>
                 <a href="./dashboard.html"><img src="../assets/icon/painel-de-controle.png" alt=""></a>
-                <a href=""><img src="../assets/icon/suporte-tecnico.png" alt=""></a>
             </div>
         </span>
-        <span><img src="../assets/icon/perfil_padrao.JPG" alt="" style="border-radius: 50%;"><span
-                id="usuarioNome"></span><a onclick="sair()"><img src="../assets/icon/sair.png" alt=""></a></span>
+        <span id="perfil">
+            <a onclick="abrirFoto()">
+            </a>
+            <span id="usuarioNome"></span>
+            <a onclick="sair()"><img src="../assets/icon/sair.png" alt=""></a>
+        </span>
     </header>
 
     <main>
@@ -46,7 +49,7 @@
                     <canvas id="myChart"></canvas>
                 </div>
                 <div style="width: 500px;">
-                    <h2>Média de engajamento diário(7 dias): Total de Curtidas + TotalComentarios / Total de Postagens
+                    <h2>Média de engajamento diário 
                     </h2>
                     <canvas id="myChart2"></canvas>
                 </div>
@@ -65,6 +68,23 @@
 </body>
 <script>
 
+    fetch(`/usuarios/dados/${sessionStorage.ID_USUARIO}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then((dadosUsuario) => {
+
+                perfil.innerHTML = `<a onclick="abrirFoto()">
+                                <img src="${dadosUsuario.foto}" alt="" style="border-radius: 50%;">
+                                </a>
+                                <span id="usuarioNome">${sessionStorage.NOME_USUARIO}</span>
+                                <a onclick="sair()"><img src="../assets/icon/sair.png" alt=""></a>`
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
     function sair() {
 
         sessionStorage.EMAIL_USUARIO = '';
@@ -75,7 +95,6 @@
             window.location = '../login.html'
         }, 100)
     }
-
 
     let totalCurtidas = 0;
     let totalComentarios = 0;
@@ -161,10 +180,17 @@
                     kpiEngajamento += (dadosEngajamento.totalcomentarios + dadosEngajamento.totalcurtidas)
                     kpiPost += dadosEngajamento.totalpostagem;
                 });
+                
 
-                kpiEngajamento = kpiEngajamento / kpiPost
+                if(kpiEngajamento != 0 && kpiPost != 0){
+                    kpiEngajamento = kpiEngajamento / kpiPost
+                }
+
+               
                 mediaEngajamento.innerHTML += `<h1>${kpiEngajamento.toFixed(2)}</h1>`
                 totalPostagemSemana.innerHTML += `<h1>${kpiPost}</h1>`
+
+               
             });
         })
         .catch(function (resposta) {

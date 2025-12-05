@@ -1,7 +1,19 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
 body {
     background-color: #BFAE99;
     color: black;
     position: relative;
+    font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button{
+    width: 100px;
+    border-radius: 20px;
+    background-color: #59493B;
+    color: white;
 }
 
 header {
@@ -44,6 +56,10 @@ header a:hover {
     background-color: rgb(88, 88, 81);
     border-radius: 5px;
     box-shadow: 2px 2px;
+}
+
+#perfil a{
+    cursor: pointer;
 }
 
 main {
@@ -130,9 +146,16 @@ main {
     color: white;
 }
 
-.post h1{
+.post h2 {
     position: absolute;
+    font-size: 22px;
     left: 10%;
+}
+
+.post h3{
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 textarea {
@@ -187,9 +210,8 @@ textarea {
 }
 
 #post_aberto img {
-    width: 50px;
-    border-radius: 50%;
-    height: 50px;
+    width: 30px;
+    height: 30px;
 }
 
 #post_aberto div {
@@ -197,6 +219,31 @@ textarea {
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+#post_aberto p {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+}
+
+#conteudoPost{
+    flex-direction: column;
+    position: relative;
+}
+
+#conteudoPost span{
+    position: absolute;
+    top: 35px;
+    right: 0;
+}
+
+#conteudoPostAberto{
+    width: 70%;
+    border-radius: 15px;
+    padding: 10px;
+    border: 1px solid black;
+    word-wrap: break-word;
 }
 
 #meus_posts {
@@ -216,21 +263,55 @@ textarea {
     justify-content: flex-start;
     align-items: center;
     border-radius: 25px;
+    border-bottom: 2px solid black;
+    padding: 2px;
 }
 
-.paragrafo{
-    text-align: center; display: flex; justify-content: center; align-items: center;
+#categoria_p img {
+    margin-left: 10px;
+}
+#categorias_tags{
+    display: flex;
+    align-self: flex-start;
+    flex-direction: row;
 }
 
-.post img.imagem{
-    width:20px; height:20px;
+#categorias_tags img{
+    width: 20px;
+    height: 20px;
 }
 
-#fechar{
-    position: absolute; top: 15px; right: 15px;background-color: red; width: 25px; height: 20px; border-radius: 5px; cursor: pointer;
+.paragrafo {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#cadastroFoto{
+.categorias_tags{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post img.imagem {
+    width: 20px;
+    height: 20px;
+}
+
+#fechar {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: red;
+    width: 25px;
+    height: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#cadastroFoto {
     position: absolute;
     right: 25px;
     top: 50px;
@@ -243,8 +324,66 @@ textarea {
     z-index: 1000;
 }
 
-#data{
+#data {
     position: absolute;
     right: 10px;
     top: 5px;
+}
+
+#sites {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#sites h2{
+    margin-top: 0;
+}
+
+.linksUteis {
+    text-decoration: none;
+    color: black;
+}
+
+.linksUteis div {
+    background-color: rgba(191, 174, 153, 0.5);
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 25px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.linksUteis img {
+    width: 30px;
+    margin-left: 20px;
+}
+
+#tags_em_alta {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#tags_em_alta p {
+    width: 96%;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    align-self: flex-start;
+    background-color: rgba(191, 174, 153, 0.5);
+    border-radius: 25px;
+    border-bottom: 2px solid black;
+    padding: 2px;
+}
+
+#tags_em_alta img {
+    width: 30px;
+    border-radius: 25px;
+    margin-left: 10px;
+}
+
+#textComentario{
+    margin-bottom: 50px;
 }
